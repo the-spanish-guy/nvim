@@ -22,11 +22,20 @@ local plugins = {
     {
       'nvim-telescope/telescope.nvim', tag = '0.1.5',
       dependencies = { 'nvim-lua/plenary.nvim' }
-    }
+    },
+    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}
   }
 local opts = {}
 
 require("lazy").setup(plugins, opts)
+
+local treesitterConfigs = require("nvim-treesitter.configs")
+treesitterConfigs.setup({
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "javascript", "html" },
+          sync_install = true,
+          highlight = { enable = true },
+          indent = { enable = true },
+})
 
 local telescopeBuiltin = require("telescope.builtin")
 vim.keymap.set('n', '<C-p>', telescopeBuiltin.find_files, {})
