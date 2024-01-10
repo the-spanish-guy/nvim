@@ -9,9 +9,15 @@ return {
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.diagnostics.eslint_d,
 				},
+				debug = true,
+				temp_dir = "/tmp",
+				update_in_insert = true,
 			})
 
 			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+			vim.diagnostic.config({
+				update_in_insert = true,
+			})
 		end,
 	},
 	{
