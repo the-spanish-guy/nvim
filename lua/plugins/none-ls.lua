@@ -15,9 +15,9 @@ return {
 			})
 
 			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
-			vim.diagnostic.config({
-				update_in_insert = true,
-			})
+
+			-- move config to lsp-config.lua
+			-- vim.diagnostic.config({ update_in_insert = true })
 		end,
 	},
 	{
