@@ -17,8 +17,6 @@ return {
         automatic_installation = true,
       })
 
-      local code_actions = null_ls.builtins.code_actions
-
       null_ls.setup({
         root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
         sources = {
@@ -29,7 +27,7 @@ return {
               return utils.root_has_file({ ".eslintrc.js", ".eslintrc.json" })
             end,
           }),
-          code_actions.gitsigns,
+          null_ls.builtins.code_actions.gitsigns,
         },
         debug = true,
         temp_dir = "/tmp",
