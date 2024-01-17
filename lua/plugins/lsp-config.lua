@@ -19,6 +19,7 @@ return {
     })
     require("mason-lspconfig").setup({
       ensure_installed = vim.tbl_keys(require("plugins.lsp.servers")),
+      automatic_installation = true,
     })
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()

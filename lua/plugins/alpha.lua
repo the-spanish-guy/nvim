@@ -1,12 +1,12 @@
 return {
-	"goolord/alpha-nvim",
-	dependencies = {
-		"nvim-tree/nvim-web-devicons",
-	},
+  "goolord/alpha-nvim",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
 
-	config = function()
-		local alpha = require("alpha")
-		local dashboard = require("alpha.themes.startify")
+  config = function()
+    local alpha = require("alpha")
+    local dashboard = require("alpha.themes.startify")
     dashboard.section.header.val = {
       [["_____________________                              _____________________ ]],
       [["`-._:  .:'   `:::  .:\           |\__/|           /::  .:'   `:::  .:.-' ]],
@@ -25,10 +25,10 @@ return {
       [[                                   "\/                                    ]],
       [[                                                                          ]],
     }
-			dashboard.section.header.opts = {
-		 position = "center",
-		 hl = "Type",
-		}
+    dashboard.section.header.opts = {
+      position = "center",
+      hl = "Type",
+    }
 
     dashboard.section.terminal = {
       type = "terminal",
@@ -36,24 +36,24 @@ return {
       width = 69,
       height = 8,
       opts = {
-          redraw = true,
-          window_config = {},
+        redraw = true,
+        window_config = {},
       },
-  }
-
+    }
 
     dashboard.section.buttons = {
       opts = {
-        position = "center"
-      }
+        position = "center",
+      },
     }
     dashboard.section.footer = {
       type = "text",
       opts = {
-          position = "center",
-          hl = "Number",
-      }}
+        position = "center",
+        hl = "Number",
+      },
+    }
 
-		alpha.setup(dashboard.opts)
-	end,
+    alpha.setup(dashboard.opts)
+  end,
 }

@@ -8,6 +8,7 @@ return {
 			sync_install = true,
 			highlight = { enable = true },
 			indent = { enable = true },
+      auto_install = true
 		})
 	end,
 }
