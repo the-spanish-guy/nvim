@@ -7,7 +7,7 @@ return {
     "MunifTanjim/nui.nvim",
   },
   keys = {
-    { "<C-b>", ":Neotree<CR>", silent = true, desc = "open file explorer" },
+    { "<C-b>", ":Neotree toggle<CR>", silent = true, desc = "open file explorer" },
   },
   config = function()
     require("neo-tree").setup({
