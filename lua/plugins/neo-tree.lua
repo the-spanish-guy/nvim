@@ -7,10 +7,17 @@ return {
     "MunifTanjim/nui.nvim",
   },
   keys = {
-    { "<C-b>", ":Neotree toggle<CR>", silent = true, desc = "open file explorer" },
+    {
+      "<C-b>",
+      ":Neotree toggle<CR>",
+      silent = true,
+      desc = "open file explorer",
+    },
   },
   config = function()
     require("neo-tree").setup({
+      close_if_last_window = true,
+
       default_component_configs = {
         indent = {
           with_markers = true,
@@ -42,11 +49,13 @@ return {
           },
         },
       },
-
       window = {
         position = "right",
         mappings = {
-          ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
+          ["P"] = {
+            "toggle_preview",
+            config = { use_float = true, use_image_nvim = true },
+          },
         },
       },
       filesystem = {

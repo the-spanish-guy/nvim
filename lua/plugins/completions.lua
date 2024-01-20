@@ -102,7 +102,8 @@ return {
         format = function(entry, vim_item)
           local lspKing_ok, lspkind = pcall(require, "lspkind")
           if not lspKing_ok then
-            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+            vim_item.kind =
+              string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
 
             vim_item.menu = ({
               nvim_lsp = "[LSP]",

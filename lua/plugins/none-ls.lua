@@ -13,12 +13,23 @@ return {
       local null_ls_utils = require("null-ls.utils")
 
       mason_null_ls.setup({
-        ensure_installed = { "stylua", "prettier", "eslint_d", "yamllint", "yamlfmt" },
+        ensure_installed = {
+          "stylua",
+          "prettier",
+          "eslint_d",
+          "yamllint",
+          "yamlfmt",
+        },
         automatic_installation = true,
       })
 
       null_ls.setup({
-        root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
+        root_dir = null_ls_utils.root_pattern(
+          ".null-ls-root",
+          "Makefile",
+          ".git",
+          "package.json"
+        ),
         sources = {
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettier,
