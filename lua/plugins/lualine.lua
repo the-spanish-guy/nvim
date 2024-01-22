@@ -3,8 +3,8 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     local lazy_status = require("lazy.status")
-    local themeName = require("utils.split")
-    local theme = require("catppuccin.palettes").get_palette(themeName)
+    local themeName = require("utils.split") -- retorna o nome do tema catppuccin-mocha -> mocha
+    local theme = require("catppuccin.palettes").get_palette(themeName) -- retorna o colorscheme
 
     require("lualine").setup({
       options = {
@@ -14,9 +14,9 @@ return {
       sections = {
         lualine_x = {
           {
-            lazy_status.updates,
-            cond = lazy_status.has_updates,
-            color = { fg = theme.flamingo },
+            lazy_status.updates, -- mostra os updates
+            cond = lazy_status.has_updates, -- mostra os updates caso hajam updates
+            color = { fg = theme.flamingo }, --pega a cor a partir da paleta de cores do tema
           },
           { "encoding" },
           { "fileformat" },

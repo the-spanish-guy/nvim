@@ -1,4 +1,4 @@
-function splitString(inputstr, sep)
+local function splitString(inputstr, sep)
   if sep == nil then
     sep = "%s"
   end
@@ -9,8 +9,10 @@ function splitString(inputstr, sep)
   return t
 end
 
-local colorscheme = vim.api.nvim_command_output("colorscheme")
-local splittedThemeName = splitString(colorscheme, "-")
-local themeName = splittedThemeName[#splittedThemeName]
+local colorscheme = vim.api.nvim_command_output("colorscheme") -- pega o colorscheme setado -> catppuccin-mocha
+local splittedThemeName = splitString(colorscheme, "-") -- split por '-' e retorna -> [catppuccin, mocha]
+local themeName = splittedThemeName[#splittedThemeName] -- retorna o ultimo indice 
 
 return themeName
+
+
