@@ -21,6 +21,15 @@ return {
         mason = true,
       },
       transparent_background = false,
+      -- for OLED monitors
+      -- ref: https://github.com/catppuccin/vscode?tab=readme-ov-file#override-palette-colors
+      --[[color_overrides = {
+        mocha = {
+          base = "#000000",
+          mantle = "#010101",
+          crust = "#020202",
+        },
+      },]]
     })
     vim.cmd.colorscheme("catppuccin")
     vim.o.background = "dark"
