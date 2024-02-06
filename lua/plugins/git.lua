@@ -57,7 +57,7 @@ return {
           file_panel = {
             {
               "n",
-              "cc",
+              "<leaeder>cc",
               function()
                 vim.ui.input({ prompt = "Commit message: " }, function(msg)
                   if not msg then
