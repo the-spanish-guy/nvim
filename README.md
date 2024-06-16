@@ -2,7 +2,7 @@
 
 > Minhas configurações para o neovim
 
->[!INFO]
+>[!NOTE]
 > Eu uso o [Packer](https://github.com/wbthomason/packer.nvim) como gerenciador de plugins
 
 # Plugins
