@@ -3,7 +3,7 @@
 > Minhas configurações para o neovim
 
 >[!NOTE]
-> Eu uso o [Packer](https://github.com/wbthomason/packer.nvim) como gerenciador de plugins
+> Eu uso o [Lazy.nvim](https://github.com/folke/lazy.nvim) como gerenciador de plugins
 
 # Plugins
 
@@ -21,3 +21,7 @@ none-ls.nvim
 telescope.nvim
 todo-comments.nvim
 treesitter.nvim
+
+<!-- 
+Colocar a lista de comandos e configurações
+ -->
