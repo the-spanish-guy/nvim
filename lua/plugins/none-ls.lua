@@ -5,6 +5,7 @@ return {
     dependencies = {
       "jay-babu/mason-null-ls.nvim",
       "nvim-lua/plenary.nvim",
+      "nvimtools/none-ls-extras.nvim",
     },
     config = function()
       local mason_null_ls = require("mason-null-ls")
@@ -35,12 +36,9 @@ return {
           null_ls.builtins.formatting.prettier,
           null_ls.builtins.formatting.yamlfmt,
           null_ls.builtins.diagnostics.yamllint,
-          null_ls.builtins.diagnostics.eslint_d.with({
-            condition = function(utils)
-              return utils.root_has_file({ ".eslintrc.js", ".eslintrc.json" })
-            end,
-          }),
+          require("none-ls.diagnostics.eslint_d"),
           null_ls.builtins.code_actions.gitsigns,
+          require("none-ls.code_actions.eslint"),
         },
         debug = true,
         temp_dir = "/tmp",
