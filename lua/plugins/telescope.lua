@@ -1,8 +1,8 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.5",
-    -- cmd = "Telescope",
+    tag = "0.1.6",
+    cmd = "Telescope",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
@@ -22,7 +22,7 @@ return {
         return string.format("%s\t\t%s", tail, parent)
       end
 
-      require("telescope").setup({
+      telescope.setup({
         defaults = {
           mappings = {
             i = {
