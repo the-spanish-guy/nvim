@@ -7,7 +7,7 @@ return {
       },
     },
   },
-  lua_ls = {
+  --[[ lua_ls = {
     settings = {
       Lua = {
         runtime = { version = "LuaJIT" },
@@ -26,6 +26,23 @@ return {
         },
         completion = {
           callSnippet = "Replace",
+        },
+      },
+    },
+  }, ]]
+  lua_ls = {
+    settings = {
+      Lua = {
+        telemetry = { enable = false },
+        diagnostics = {
+          globals = { "vim" },
+        },
+        workspace = {
+          -- make language server aware of runtime files
+          library = {
+            "${3rd}/luv/library",
+            unpack(vim.api.nvim_get_runtime_file("", true)),
+          },
         },
       },
     },
