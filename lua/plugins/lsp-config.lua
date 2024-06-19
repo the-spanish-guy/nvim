@@ -43,7 +43,7 @@ return {
       title = false,
       underline = true,
       virtual_text = true,
-      signs = true,
+     --[[  signs = true, ]]
       update_in_insert = true,
       severity_sort = true,
       float = {
@@ -53,9 +53,29 @@ return {
         header = "",
         prefix = "",
       },
+      signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "" .. icons.diagnostics.Error .. "",
+            [vim.diagnostic.severity.WARN] = "" .. icons.diagnostics.Warning .. "",
+            [vim.diagnostic.severity.HINT] = "" .. icons.diagnostics.Hint .. "",
+            [vim.diagnostic.severity.INFO] = "" .. icons.diagnostics.Information .. "",
+        },
+        linehl = {
+          [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+          [vim.diagnostic.severity.WARN] = 'WarningMsg',
+          [vim.diagnostic.severity.HINT] = 'HintMsg',
+          [vim.diagnostic.severity.INFO] = 'InformationMsg',
+        },
+        numhl = {
+            [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+            [vim.diagnostic.severity.WARN] = 'WarningMsg',
+            [vim.diagnostic.severity.HINT] = 'HintMsg',
+            [vim.diagnostic.severity.INFO] = 'InformationMsg',
+        },
+    },
     })
 
-    local signs = {
+    --[[ local signs = {
       Hint = "" .. icons.diagnostics.Hint .. "",
       Error = "" .. icons.diagnostics.Error .. "",
       Warn = "" .. icons.diagnostics.Warning .. "",
@@ -64,8 +84,9 @@ return {
 
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
+      -- vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    end ]]
+    
 
     -- vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
     -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
