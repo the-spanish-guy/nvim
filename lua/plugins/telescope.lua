@@ -2,7 +2,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.6",
-    cmd = "Telescope",
+    -- cmd = "Telescope", -- se a linha for descomentada o telescope nao funcionara ao startar o nvim
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
@@ -29,7 +29,7 @@ return {
               ["<esc>"] = actions.close,
             },
           },
-          file_ignore_patterns = { "node_modules", "*-lock.json" },
+          file_ignore_patterns = { "node_modules/", "*-lock.json", ".git/" },
           selection_caret = icons.ui.DoubleChevronRight .. " ",
           prompt_prefix = " " .. icons.ui.Telescope .. " ",
           color_devicons = true,
@@ -62,6 +62,7 @@ return {
           find_files = {
             previewer = true,
             path_display = formattedName,
+            hidden = true,
             layout_config = {
               height = 0.4,
               prompt_position = "bottom",
