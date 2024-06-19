@@ -8,35 +8,32 @@ return {
         auto_attach = true,
         signs = {
           add = {
-            hl = "GitSignsAdd",
             text = icons.ui.BoldLineLeft,
-            numhl = "GitSignsAddNr",
-            linehl = "GitSignsAddLn",
           },
           change = {
-            hl = "GitSignsChange",
             text = icons.ui.BoldLineLeft,
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
           },
           delete = {
-            hl = "GitSignsDelete",
             text = icons.ui.TriangleShortArrowRight,
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
           },
           topdelete = {
-            hl = "GitSignsDelete",
             text = icons.ui.TriangleShortArrowRight,
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
           },
           changedelete = {
-            hl = "GitSignsChange",
             text = icons.ui.BoldLineLeft,
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
           },
+        },
+        signcolumn = true,         -- Toggle with `:Gitsigns toggle_signs`
+        numhl = false,             -- Toggle with `:Gitsigns toggle_numhl`
+        linehl = false,            -- Toggle with `:Gitsigns toggle_linehl`
+        word_diff = false,         -- Toggle with `:Gitsigns toggle_word_diff`
+        current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+        current_line_blame_opts = {
+          virt_text = true,
+          virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+          delay = 1000,
+          ignore_whitespace = false,
+          virt_text_priority = 100,
         },
       })
     end,
