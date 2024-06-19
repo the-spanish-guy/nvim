@@ -52,6 +52,7 @@ return {
       "DiffviewFocusFiles",
     },
     config = function()
+      -- see https://github.com/sindrets/diffview.nvim/blob/main/USAGE.md
       require("diffview").setup({
         keymaps = {
           file_panel = {

@@ -20,6 +20,7 @@ return {
           "eslint_d",
           "yamllint",
           "yamlfmt",
+          "gofumpt",
         },
         automatic_installation = true,
       })
@@ -35,6 +36,7 @@ return {
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettier,
           null_ls.builtins.formatting.yamlfmt,
+          null_ls.builtins.formatting.gofumpt,
           null_ls.builtins.diagnostics.yamllint,
           require("none-ls.diagnostics.eslint_d"),
           null_ls.builtins.code_actions.gitsigns,

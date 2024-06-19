@@ -1,6 +1,10 @@
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
+    "hrsh7th/cmp-calc",
+    "kdheepak/cmp-latex-symbols",
+    "ray-x/cmp-sql",
+
     -- Snippets Engine
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
@@ -95,8 +99,15 @@ return {
         { name = "nvim_lsp" },
         { name = "luasnip" }, -- For luasnip users.
         { name = "path" },
-      }, {
+        { name = 'calc' },
+        {
+          name = "latex_symbols",
+          option = {
+            strategy = 0, -- mixed
+          },
+        },
         { name = "buffer" },
+        { name = 'sql' }
       }),
       formatting = {
         format = function(entry, vim_item)
@@ -109,6 +120,8 @@ return {
               nvim_lsp = "[LSP]",
               luasnip = "[LuaSnip]",
               buffer = "[Buffer]",
+              latex_symbols = "[LaTeX]",
+              calc = "[Calc]",
             })[entry.source.name]
             return vim_item
           else
