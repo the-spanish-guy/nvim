@@ -20,6 +20,7 @@ plugins diversos
 - [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [treesitter.nvim](https://github.com/nvim-treesitter/nvim-treesitter)
+- [kulala.lua](https://github.com/mistweaverco/kulala.nvim) # para requesições HTTP
 
 plugins para documentação
 - [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
