@@ -8,6 +8,7 @@
 # Lista de Plugins
 
 
+
 plugins de estilização
 - [alpha.nvim](https://github.com/goolord/alpha-nvim)
 - [dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)
