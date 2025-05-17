@@ -53,7 +53,7 @@ return {
   vimls = {
     filetypes = { "vim" },
   },
-  tsserver = {},
+  ts_ls = {},
   -- golangci_lint_ls = {},
   gopls = {},
   yamlls = {
