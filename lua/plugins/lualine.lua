@@ -3,7 +3,8 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     local lazy_status = require("lazy.status")
-    local themeName = require("utils.split") -- retorna o nome do tema catppuccin-mocha -> mocha
+    -- comentando a linha abaixo por não estar usando catppuccin omo theme
+    -- local themeName = require("utils.split") -- retorna o nome do tema catppuccin-mocha -> mocha
     local theme = require("catppuccin.palettes").get_palette(themeName) -- retorna o colorscheme
 
     require("lualine").setup({
