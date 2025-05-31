@@ -36,16 +36,16 @@ return {
         git_status = {
           symbols = {
             -- Change type
-            added = "",
-            deleted = "",
-            modified = "",
-            renamed = "",
+            added = "✚",
+            deleted = "✖",
+            modified = "◍",
+            renamed = "→",
             -- Status type
-            untracked = "",
-            ignored = "",
-            unstaged = "",
-            staged = "",
-            conflict = "",
+            untracked = "?",
+            ignored = "◌",
+            unstaged = "○",
+            staged = "●",
+            conflict = "!"
           },
         },
       },
