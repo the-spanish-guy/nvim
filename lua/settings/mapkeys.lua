@@ -32,13 +32,21 @@ keymap("n", "<C-l>", "<C-w>l", "Janela à direita")
 -- LSP Renomeação (estilo VSCode)
 -- F2: Renomeia o símbolo sob o cursor
 keymap("n", "<F2>", vim.lsp.buf.rename, "Renomear símbolo")
--- Ctrl+F2: Mostra todas as referências do símbolo
-keymap("n", "<C-F2>", vim.lsp.buf.references, "Mostrar todas as referências")
+-- Ctrl+F2: Mostra todas as referências do símbolo (usando Telescope para melhor visualização)
+--keymap("n", "<C-F2>", vim.lsp.buf.references, "Mostrar todas as referências")
+keymap("n", "<C-F2>", "<cmd>Telescope lsp_references<CR>", "Mostrar todas as referências")
 
 -- Definição e Implementação
+--[[ Keymaps LSP padrão (usando quickfix list)
 keymap("n", "gd", vim.lsp.buf.definition, "Ir para definição")
 keymap("n", "gi", vim.lsp.buf.implementation, "Ir para implementação")
 keymap("n", "gr", vim.lsp.buf.references, "Encontrar referências")
+]]
+
+-- Keymaps LSP com Telescope (interface mais amigável)
+keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", "Ir para definição")
+keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", "Ir para implementação")
+keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", "Encontrar referências")
 keymap("n", "K", vim.lsp.buf.hover, "Mostrar documentação")
 
 -- Ações de código e diagnósticos
