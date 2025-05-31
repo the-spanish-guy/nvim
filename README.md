@@ -41,6 +41,9 @@ Barra de navegação estilo VSCode para fácil navegação entre símbolos e est
 ### [catppuccin.nvim](https://github.com/catppuccin/nvim)
 Tema moderno com suporte a diversos plugins e sintaxe rica.
 
+### [vague.nvim](https://github.com/ashincoder/vague.nvim)
+Tema atual em uso, oferecendo uma paleta de cores suave e moderna para uma experiência visual agradável.
+
 ### [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 Linha de status minimalista e informativa.
 
