@@ -35,6 +35,28 @@ keymap("n", "<F2>", vim.lsp.buf.rename, "Renomear símbolo")
 -- Ctrl+F2: Mostra todas as referências do símbolo
 keymap("n", "<C-F2>", vim.lsp.buf.references, "Mostrar todas as referências")
 
+-- Definição e Implementação
+keymap("n", "gd", vim.lsp.buf.definition, "Ir para definição")
+keymap("n", "gi", vim.lsp.buf.implementation, "Ir para implementação")
+keymap("n", "gr", vim.lsp.buf.references, "Encontrar referências")
+keymap("n", "K", vim.lsp.buf.hover, "Mostrar documentação")
+
+-- Ações de código e diagnósticos
+keymap("n", "<leader>ca", vim.lsp.buf.code_action, "Ações de código")
+-- Alternativa ao F2 para renomear símbolos (útil quando F2 não está disponível no terminal)
+keymap("n", "<leader>rn", vim.lsp.buf.rename, "Renomear símbolo (alt F2)")
+keymap("n", "[d", vim.diagnostic.goto_prev, "Diagnóstico anterior")
+keymap("n", "]d", vim.diagnostic.goto_next, "Próximo diagnóstico")
+keymap("n", "<leader>d", vim.diagnostic.open_float, "Mostrar diagnóstico")
+keymap("n", "<leader>q", vim.diagnostic.setloclist, "Lista de diagnósticos")
+
+-- Workspace
+keymap("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Adicionar pasta ao workspace")
+keymap("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remover pasta do workspace")
+keymap("n", "<leader>wl", function()
+  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end, "Listar pastas do workspace")
+
 --[[
 Movendo a linha selecionada ↑↓
 Alt - j Move a linha do cursor pra cima
