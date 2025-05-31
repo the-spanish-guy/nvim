@@ -34,7 +34,6 @@ keymap("n", "<C-l>", "<C-w>l", "Janela à direita")
 keymap("n", "<F2>", vim.lsp.buf.rename, "Renomear símbolo")
 -- Ctrl+F2: Mostra todas as referências do símbolo (usando Telescope para melhor visualização)
 --keymap("n", "<C-F2>", vim.lsp.buf.references, "Mostrar todas as referências")
-keymap("n", "<C-F2>", "<cmd>Telescope lsp_references<CR>", "Mostrar todas as referências")
 
 -- Definição e Implementação
 --[[ Keymaps LSP padrão (usando quickfix list)
