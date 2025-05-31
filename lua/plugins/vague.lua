@@ -13,7 +13,7 @@ return {
         float = "none",
         error = "bold",
         comments = "italic",
-        conditionals = "none",
+        conditionals = "bold",
         functions = "none",
         headings = "bold",
         operators = "none",
@@ -21,11 +21,11 @@ return {
         variables = "none",
 
         -- keywords
-        keywords = "none",
+        keywords = "bold",
         keyword_return = "italic",
-        keywords_loop = "none",
+        keywords_loop = "bold",
         keywords_label = "none",
-        keywords_exception = "none",
+        keywords_exception = "bold",
 
         -- builtin
         builtin_constants = "bold",
@@ -55,6 +55,10 @@ return {
         },
         telescope = {
           match = "bold",
+        },
+        ["neo-tree"] = {
+          directory_name = "bold",
+          modified = "bold",
         },
       },
 
