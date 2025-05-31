@@ -20,6 +20,11 @@ return {
       sections = {
         lualine_x = {
           {
+            require("noice").api.status.command.get, -- mostra o comando que está sendo executado
+            cond = require("noice").api.status.command.has, -- mostra o comando que está sendo executado caso haja um comando sendo executado
+            color = { fg = "#ff9e64" }, -- cor do comando que está sendo executado
+          },
+          {
             lazy_status.updates, -- mostra os updates
             cond = lazy_status.has_updates, -- mostra os updates caso hajam updates
             color = { fg = theme.flamingo }, --pega a cor a partir da paleta de cores do tema
