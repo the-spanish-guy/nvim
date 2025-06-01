@@ -6,54 +6,63 @@ return {
 
   config = function()
     local alpha = require("alpha")
-    local dashboard = require("alpha.themes.startify")
-    dashboard.section.header.val = {
-      [["_____________________                              _____________________ ]],
-      [["`-._:  .:'   `:::  .:\           |\__/|           /::  .:'   `:::  .:.-' ]],
-      [[    "\      :          \          |:   |          /         :       /     ]],
-      [[     "\     ::    .     `-_______/ ::   \_______-'   .      ::   . /      ]],
-      [[      "|  :   :: ::'  :   :: ::'  :   :: ::'      :: ::'  :   :: :|       ]],
-      [[      "|     ;::         ;::         ;::         ;::         ;::  |       ]],
-      [[      "|  .:'   `:::  .:'   `:::  .:'   `:::  .:'   `:::  .:'   `:|       ]],
-      [[      "/     :           :           :           :           :    \       ]],
-      [[     "/______::_____     ::    .     ::    .     ::   _____._::____\      ]],
-      [[                   "`----._:: ::'  :   :: ::'  _.----'                    ]],
-      [[                          "`--.       ;::  .--'                           ]],
-      [[                              "`-. .:'  .-'                               ]],
-      [[                                 "\    / :SPANISH:                        ]],
-      [[                                  "\  /                                   ]],
-      [[                                   "\/                                    ]],
-      [[                                                                          ]],
+    local startify = require("alpha.themes.startify")
+    local headers = require("utils.headers").headers
+    local icons = require("utils.icons")
+
+    -- Configuração dos ícones
+    startify.file_icons = {
+      enabled = true,
+      provider = "devicons"
     }
-    dashboard.section.header.opts = {
+
+    -- Escolhe o header do Hollow Knight
+    startify.section.header.val = headers.knight
+
+    -- Configuração do header
+    startify.section.header.opts = {
       position = "center",
       hl = "Type",
     }
 
-    dashboard.section.terminal = {
-      type = "terminal",
-      command = nil,
-      width = 69,
-      height = 8,
-      opts = {
-        redraw = true,
-        window_config = {},
+    -- Configuração dos botões
+    startify.section.top_buttons = {
+      type = "group",
+      val = {
+        startify.button("e", "" .. icons.ui.FilledFile .. "  New file", ":ene <BAR> startinsert <CR>"),
+        startify.button("f", "󰈞  Find file", ":Telescope find_files<CR>"),
+        startify.button("r", "  Recent files", ":Telescope oldfiles<CR>"),
+        startify.button("s", "  Settings", ":e $MYVIMRC<CR>"),
+        startify.button("q", "" .. icons.ui.BoldClose .. "  Quit", ":qa<CR>"),
       },
     }
 
-    dashboard.section.buttons = {
-      opts = {
-        position = "center",
-      },
-    }
-    dashboard.section.footer = {
+    -- Configuração do footer
+    startify.section.footer = {
       type = "text",
+      val = {
+        "🦋 No will to break",
+        "🗡️ No mind to think",
+        "🎭 Born of God and Void",
+        "🪲 No voice to cry suffering",
+      },
       opts = {
         position = "center",
-        hl = "Number",
+        hl = "Comment",
       },
     }
 
-    alpha.setup(dashboard.opts)
+    -- Ordem das seções
+    startify.config.layout = {
+      { type = "padding", val = 2 },
+      startify.section.header,
+      { type = "padding", val = 2 },
+      startify.section.top_buttons,
+      startify.section.mru,
+      { type = "padding", val = 1 },
+      startify.section.footer,
+    }
+
+    alpha.setup(startify.config)
   end,
 }
