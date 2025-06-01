@@ -108,6 +108,7 @@ return {
     List = "",
     Lock = "",
     NewFile = "",
+    FilledFile = "",
     Note = "",
     Package = "",
     Pencil = "",
