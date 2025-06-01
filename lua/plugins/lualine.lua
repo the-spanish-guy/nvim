@@ -6,6 +6,7 @@ return {
     -- comentando a linha abaixo por não estar usando catppuccin omo theme
     -- local themeName = require("utils.split") -- retorna o nome do tema catppuccin-mocha -> mocha
     local theme = require("catppuccin.palettes").get_palette(themeName) -- retorna o colorscheme
+    local icons = require("utils.icons")
 
     require("lualine").setup({
       options = {
@@ -18,6 +19,56 @@ return {
         },
       },
       sections = {
+        lualine_a = {
+          {
+            "mode",
+            color = { gui = "bold" },
+            icon = icons.files.neovim,
+          },
+        },
+        -- Adicionando a seção b com a branch limitada
+        lualine_b = {
+          {
+            'branch',
+            icon = icons.git.Branch,
+            fmt = function(str)
+              -- Limita o nome da branch para 8 caracteres
+              if str and #str > 8 then
+                return string.sub(str, 1, 8) .. '…'
+              end
+              return str
+            end,
+          },
+        },
+        lualine_c = {
+          { 
+            "filename",
+            path = 0,
+            symbols = {
+              modified = icons.ui.Pencil,
+              readonly = icons.ui.Lock,
+              unnamed = "[Sem Nome]",
+            }
+          },
+          {
+            "diagnostics",
+            sources = { "nvim_diagnostic" },
+            symbols = {
+              error = icons.diagnostics.Error .. " ",
+              warn = icons.diagnostics.Warning .. " ",
+              info = icons.diagnostics.Information .. " ",
+              hint = icons.diagnostics.Hint .. " ",
+            },
+          },
+          {
+            "diff",
+            symbols = {
+              added = icons.git.LineAdded .. " ",
+              modified = icons.git.LineModified .. " ",
+              removed = icons.git.LineRemoved .. " ",
+            },
+          },
+        },
         lualine_x = {
           {
             require("noice").api.status.command.get, -- mostra o comando que está sendo executado
@@ -32,6 +83,12 @@ return {
           { "encoding" },
           { "fileformat" },
           { "filetype" },
+        },
+        lualine_y = {
+          { "progress" },
+        },
+        lualine_z = {
+          { "location" },
         },
       },
       extensions = { "neo-tree" },

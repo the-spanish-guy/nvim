@@ -139,7 +139,7 @@ return {
     BoldQuestion = "",
     Question = "",
     BoldHint = "",
-    Hint = "",
+    Hint = "",
     Debug = "",
     Trace = "✎",
   },
@@ -152,4 +152,7 @@ return {
     Package = "",
     CircuitBoard = "",
   },
+  files = {
+    neovim = ""
+  }
 }
