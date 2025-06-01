@@ -106,30 +106,67 @@ Engine de autocompletação altamente extensível.
 ## ⌨️ Atalhos Principais
 
 ### Geral
-- `<Space>` - Líder
-- `<C-s>` - Salvar
-- `<C-q>` - Fechar buffer
+- `<Space>` - Tecla líder
+- `<C-s>` - Salvar arquivo
+- `<leader>x` - Fechar buffer
 - `<C-h/j/k/l>` - Navegar entre janelas
 
-### Telescope
-- `<leader>ff` - Buscar arquivos
-- `<leader>fg` - Buscar com grep
-- `<leader>fb` - Buscar buffers
-- `<leader>fh` - Buscar ajuda
+### Edição Básica
+- `<C-a>` - Selecionar todo o arquivo
+- `<C-S-k>` - Deletar linha sem copiar (estilo VSCode)
+- `<A-j>` / `<A-Down>` - Mover linha/seleção para baixo
+- `<A-k>` / `<A-Up>` - Mover linha/seleção para cima
 
-### LSP
-- `gd` - Ir para definição
-- `gr` - Encontrar referências
-- `K` - Mostrar documentação
+### Navegação
+- `<C-g>` - Ir para linha específica
+- `<S-h>` - Buffer anterior
+- `<S-l>` - Próximo buffer
+
+### Gerenciamento de Janelas
+- `<leader>sv` - Dividir verticalmente
+- `<leader>sh` - Dividir horizontalmente
+
+### LSP e Código
 - `<F2>` - Renomear símbolo
+- `<leader>rn` - Renomear símbolo (alternativo)
+- `gd` - Ir para definição (Telescope)
+- `gi` - Ir para implementação (Telescope)
+- `gr` - Encontrar referências (Telescope)
+- `K` - Mostrar documentação
 - `<leader>ca` - Ações de código
-- `[d` / `]d` - Próximo/anterior diagnóstico
+- `[d]` - Diagnóstico anterior
+- `]d` - Próximo diagnóstico
+- `<leader>d` - Mostrar diagnóstico
+- `<leader>q` - Lista de diagnósticos
+- `<leader>gf` - Formatar código
 
-### Git
-- `<leader>gs` - Status do git
-- `<leader>gd` - Diff view
-- `]c` / `[c` - Próxima/anterior mudança
-- `<leader>gb` - Blame line
+### Workspace
+- `<leader>wa` - Adicionar pasta ao workspace
+- `<leader>wr` - Remover pasta do workspace
+- `<leader>wl` - Listar pastas do workspace
+
+### Telescope
+- `<C-p>` - Buscar arquivos
+- `<leader>fg` - Buscar texto (grep)
+- `<leader>fb` - Listar buffers
+- `<leader>fh` - Buscar na ajuda
+- `<leader>fs` - Buscar palavra sob cursor
+- `<leader>fr` - Retomar última busca
+
+### Neo-tree (Explorador de Arquivos)
+- `<C-b>` - Abrir/fechar explorador de arquivos
+
+### HTTP Client (Kulala)
+- `<C-j>` - Executar requisição HTTP
+
+### Completions (nvim-cmp)
+- `<C-Space>` - Abrir completions
+- `<C-e>` - Fechar completions
+- `<CR>` - Confirmar seleção
+- `<Tab>` - Próxima sugestão/expandir snippet
+- `<S-Tab>` - Sugestão anterior
+- `<C-b>` - Rolar documentação para cima
+- `<C-f>` - Rolar documentação para baixo
 
 ## 🔍 Troubleshooting
 
@@ -166,7 +203,6 @@ Sinta-se à vontade para abrir issues ou PRs com melhorias!
 
 Made by [the spanish guy](https://github.com/the-spanish-guy) with :black_heart:
 
-```
           ／＞　 フ
          | 　_　_|
        ／` ミ__^ノ
@@ -176,4 +212,3 @@ Made by [the spanish guy](https://github.com/the-spanish-guy) with :black_heart:
 ／￣|　　 |　|　|          |、˜〵
 (￣ヽ＿_  ヽ_)__)         じしˍ,)ノ
 ＼二)
-```
