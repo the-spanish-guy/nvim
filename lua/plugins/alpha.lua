@@ -14,7 +14,7 @@ return {
     -- Configuração dos ícones
     startify.file_icons = {
       enabled = true,
-      provider = "devicons"
+      provider = "devicons",
     }
 
     -- Escolhe o header do Hollow Knight
@@ -30,7 +30,11 @@ return {
     startify.section.top_buttons = {
       type = "group",
       val = {
-        startify.button("e", "" .. icons.ui.FilledFile .. "  New file", ":ene <BAR> startinsert <CR>"),
+        startify.button(
+          "e",
+          "" .. icons.ui.FilledFile .. "  New file",
+          ":ene <BAR> startinsert <CR>"
+        ),
         startify.button("f", "󰈞  Find file", ":Telescope find_files<CR>"),
         startify.button("r", "  Recent files", ":Telescope oldfiles<CR>"),
         startify.button("s", "  Settings", ":e $MYVIMRC<CR>"),
@@ -43,28 +47,34 @@ return {
       type = "group",
       val = {
         { type = "padding", val = 1 },
-        { type = "text", val = "Arquivos Recentes do Diretório Atual:", opts = { hl = "SpecialComment" }},
+        {
+          type = "text",
+          val = "Arquivos Recentes do Diretório Atual:",
+          opts = { hl = "SpecialComment", position = "center" },
+        },
         { type = "padding", val = 1 },
         {
           type = "group",
           val = function()
             return { startify.mru(0, vim.fn.getcwd(), 2) }
           end,
-          opts = { shrink_margin = false }
-        }
+          opts = { shrink_margin = false },
+        },
       },
       opts = {
         hl = "String",
         shrink_margin = false,
         position = "center",
-      }
+      },
     }
 
     -- Configuração do footer
     startify.section.footer = {
       type = "group",
       val = {
-        { type = "text", val = {
+        {
+          type = "text",
+          val = {
             "🦋 No will to break",
             "🗡️ No mind to think",
             "🎭 Born of God and Void",
@@ -76,7 +86,9 @@ return {
           },
         },
         { type = "padding", val = 1 },
-        { type = "text", val = function()
+        {
+          type = "text",
+          val = function()
             local lines = zote.get_random_precept()
             local formatted_lines = {}
             -- Primeira linha com o ícone
