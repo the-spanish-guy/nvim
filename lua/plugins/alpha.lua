@@ -9,6 +9,7 @@ return {
     local startify = require("alpha.themes.startify")
     local headers = require("utils.headers").headers
     local icons = require("utils.icons")
+    local zote = require("utils.zote_precepts")
 
     -- Configuração dos ícones
     startify.file_icons = {
@@ -17,7 +18,7 @@ return {
     }
 
     -- Escolhe o header do Hollow Knight
-    startify.section.header.val = headers.radiance
+    startify.section.header.val = headers.zote_100
 
     -- Configuração do header
     startify.section.header.opts = {
@@ -39,16 +40,28 @@ return {
 
     -- Configuração do footer
     startify.section.footer = {
-      type = "text",
+      type = "group",
       val = {
-        "🦋 No will to break",
-        "🗡️ No mind to think",
-        "🎭 Born of God and Void",
-        "🪲 No voice to cry suffering",
-      },
-      opts = {
-        position = "center",
-        hl = "Comment",
+        { type = "text", val = {
+            "🦋 No will to break",
+            "🗡️ No mind to think",
+            "🎭 Born of God and Void",
+            "🪲 No voice to cry suffering",
+          },
+          opts = {
+            position = "center",
+            hl = "Comment",
+          },
+        },
+        { type = "padding", val = 1 },
+        { type = "text", val = {
+            "⚔️  " .. zote.get_random_precept(),
+          },
+          opts = {
+            position = "center",
+            hl = "String",
+          },
+        },
       },
     }
 
