@@ -61,6 +61,11 @@ Busca fuzzy para arquivos, buffers e muito mais.
 ### [treesitter.nvim](https://github.com/nvim-treesitter/nvim-treesitter)
 Parsing de sintaxe avançado para highlighting e navegação.
 
+> [!NOTE]
+> Se ao rodar `:checkhealth nvim-treesitter` aparecer um warning `warning tree-sitter executable not found`
+> Será necessário isntalar o pacote `npm install tree-sitter-cli`
+> [ref](https://github.com/nvim-treesitter/nvim-treesitter/issues/1097#issuecomment-2512543496)
+
 ### [kulala.lua](https://github.com/mistweaverco/kulala.nvim)
 Cliente HTTP integrado para testes de API.
 
@@ -203,6 +208,7 @@ Sinta-se à vontade para abrir issues ou PRs com melhorias!
 
 Made by [the spanish guy](https://github.com/the-spanish-guy) with :black_heart:
 
+```
           ／＞　 フ
          | 　_　_|
        ／` ミ__^ノ
@@ -212,3 +218,4 @@ Made by [the spanish guy](https://github.com/the-spanish-guy) with :black_heart:
 ／￣|　　 |　|　|          |、˜〵
 (￣ヽ＿_  ヽ_)__)         じしˍ,)ノ
 ＼二)
+```
