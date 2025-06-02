@@ -17,7 +17,7 @@ return {
     }
 
     -- Escolhe o header do Hollow Knight
-    startify.section.header.val = headers.knight
+    startify.section.header.val = headers.zote_100
 
     -- Configuração do header
     startify.section.header.opts = {
