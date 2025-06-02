@@ -1,39 +1,49 @@
+---@diagnostic disable: undefined-global
+
+-- Referência de APIs do Neovim:
+-- vim.opt: Usado para definir opções do editor (equivalente ao comando 'set' do Vim)
+-- vim.g: Usado para definir variáveis globais do Vim (equivalente ao prefixo 'g:' do Vim)
+
 -- Configurações de codificação e cores
-vim.cmd("set t_Co=256")          -- Habilita suporte a 256 cores no terminal
-vim.cmd("set encoding=UTF-8")     -- Define a codificação do arquivo para UTF-8
+-- Nota: A configuração abaixo não é mais necessária no Neovim moderno
+-- vim.opt.t_Co = "256"         -- O Neovim detecta e configura automaticamente o suporte a cores do terminal
+vim.opt.encoding = "UTF-8"       -- Define a codificação do arquivo para UTF-8
 
 -- Configurações de indentação
-vim.cmd("set expandtab")         -- Converte tabs em espaços
-vim.cmd("set tabstop=2")         -- Define o tamanho visual de um caractere tab como 2 espaços
-vim.cmd("set softtabstop=2")     -- Define o número de espaços inseridos quando pressiona tab
-vim.cmd("set shiftwidth=2")      -- Define o número de espaços usados para indentação (>>)
+vim.opt.expandtab = true         -- Converte tabs em espaços
+vim.opt.tabstop = 2             -- Define o tamanho visual de um caractere tab como 2 espaços
+vim.opt.softtabstop = 2         -- Define o número de espaços inseridos quando pressiona tab
+vim.opt.shiftwidth = 2          -- Define o número de espaços usados para indentação (>>)
 
 -- Configurações de interface
-vim.cmd("set number")            -- Mostra números de linha
-vim.cmd("set relativenumber")    -- Mostra números de linha relativos à linha atual
-vim.cmd("set cursorline")        -- Destaca a linha atual do cursor
-vim.cmd("set signcolumn=yes")    -- Sempre mostra a coluna de símbolos (git/lsp)
-vim.cmd("set scrolloff=8")       -- Mantém 8 linhas visíveis acima/abaixo do cursor
-vim.cmd("set sidescrolloff=8")   -- Mantém 8 colunas visíveis à esquerda/direita do cursor
+vim.opt.number = true           -- Mostra números de linha
+vim.opt.relativenumber = true   -- Mostra números de linha relativos à linha atual
+vim.opt.cursorline = true      -- Destaca a linha atual do cursor
+vim.opt.signcolumn = "yes"     -- Sempre mostra a coluna de símbolos (git/lsp)
+vim.opt.scrolloff = 8          -- Mantém 8 linhas visíveis acima/abaixo do cursor
+vim.opt.sidescrolloff = 8      -- Mantém 8 colunas visíveis à esquerda/direita do cursor
 
 -- Configurações de busca
-vim.cmd("set ignorecase")        -- Ignora maiúsculas/minúsculas na busca
-vim.cmd("set smartcase")         -- Considera maiúsculas/minúsculas se usar maiúsculas na busca
-vim.cmd("set hlsearch")          -- Destaca todos os resultados da busca
-vim.cmd("set incsearch")         -- Mostra resultados da busca enquanto digita
+vim.opt.ignorecase = true      -- Ignora maiúsculas/minúsculas na busca
+vim.opt.smartcase = true       -- Considera maiúsculas/minúsculas se usar maiúsculas na busca
+vim.opt.hlsearch = true        -- Destaca todos os resultados da busca
+vim.opt.incsearch = true       -- Mostra resultados da busca enquanto digita
 
 -- Configurações de experiência de edição
-vim.cmd("set mouse=a")           -- Habilita suporte completo ao mouse
-vim.cmd("set clipboard=unnamedplus") -- Usa o clipboard do sistema
-vim.cmd("set undofile")          -- Mantém histórico de desfazer mesmo após fechar arquivo
-vim.cmd("set updatetime=300")    -- Reduz o tempo de atualização (melhor experiência git/lsp)
-vim.cmd("set timeoutlen=500")    -- Tempo para completar uma sequência de teclas
+vim.opt.mouse = "a"            -- Habilita suporte completo ao mouse
+vim.opt.clipboard = "unnamedplus" -- Usa o clipboard do sistema
+vim.opt.undofile = true        -- Mantém histórico de desfazer mesmo após fechar arquivo
+vim.opt.updatetime = 300       -- Reduz o tempo de atualização (melhor experiência git/lsp)
+vim.opt.timeoutlen = 500       -- Tempo para completar uma sequência de teclas
 
 -- Configurações de janelas divididas
-vim.cmd("set splitbelow")        -- Novas janelas horizontais abrem abaixo
-vim.cmd("set splitright")        -- Novas janelas verticais abrem à direita
+vim.opt.splitbelow = true      -- Novas janelas horizontais abrem abaixo
+vim.opt.splitright = true      -- Novas janelas verticais abrem à direita
 
 -- Configurações de backup e segurança
-vim.cmd("set nobackup")          -- Desativa arquivos de backup
-vim.cmd("set nowritebackup")     -- Não cria backup antes de sobrescrever arquivo
-vim.cmd("set noswapfile")        -- Desativa arquivos de swap
+vim.opt.backup = false         -- Desativa arquivos de backup
+vim.opt.writebackup = false    -- Não cria backup antes de sobrescrever arquivo
+vim.opt.swapfile = false       -- Desativa arquivos de swap
+
+-- Configuração do EditorConfig
+vim.g.loaded_editorconfig = 0  -- Ativa o suporte nativo ao EditorConfig no Neovim
