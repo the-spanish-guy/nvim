@@ -38,6 +38,28 @@ return {
       },
     }
 
+    -- Configuração do MRU (Most Recently Used)
+    startify.section.mru = {
+      type = "group",
+      val = {
+        { type = "padding", val = 1 },
+        { type = "text", val = "Arquivos Recentes do Diretório Atual:", opts = { hl = "SpecialComment" }},
+        { type = "padding", val = 1 },
+        {
+          type = "group",
+          val = function()
+            return { startify.mru(0, vim.fn.getcwd(), 2) }
+          end,
+          opts = { shrink_margin = false }
+        }
+      },
+      opts = {
+        hl = "String",
+        shrink_margin = false,
+        position = "center",
+      }
+    }
+
     -- Configuração do footer
     startify.section.footer = {
       type = "group",
