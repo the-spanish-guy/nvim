@@ -151,6 +151,7 @@ return {
     Smiley = "",
     Package = "",
     CircuitBoard = "",
+    Corinthians = "󰀱"
   },
   files = {
     neovim = ""

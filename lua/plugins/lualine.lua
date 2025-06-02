@@ -23,7 +23,7 @@ return {
           {
             "mode",
             color = { gui = "bold" },
-            icon = icons.files.neovim,
+            icon = icons.misc.Corinthians,
           },
         },
         -- Adicionando a seção b com a branch limitada
