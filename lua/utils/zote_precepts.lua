@@ -122,15 +122,47 @@ M.precepts_en = {
   "Precept Fifty-Seven: 'Obey All Precepts' - Most importantly, you must commit all of these precepts to memory and obey them all unfailingly. Including this one!"
 }
 
+-- Função para quebrar texto em linhas com tamanho máximo
+function M.wrap_text(text, max_width)
+  local lines = {}
+  local line = ""
+  local words = {}
+  
+  -- Divide o texto em palavras
+  for word in text:gmatch("%S+") do
+    table.insert(words, word)
+  end
+  
+  for i, word in ipairs(words) do
+    if #line + #word + 1 <= max_width or #line == 0 then
+      if #line == 0 then
+        line = word
+      else
+        line = line .. " " .. word
+      end
+    else
+      table.insert(lines, line)
+      line = word
+    end
+  end
+  
+  if #line > 0 then
+    table.insert(lines, line)
+  end
+  
+  return lines
+end
+
+-- Retorna um preceito aleatório formatado em linhas
 -- Retorna um preceito aleatório dos 57 preceitos de Zote
 -- @param lang string: 'pt' para português (padrão) ou 'en' para inglês
 function M.get_random_precept(lang)
   lang = lang or 'pt' -- Se não especificado, usa português
   local precepts = lang == 'en' and M.precepts_en or M.precepts_pt
-  
-  math.randomseed(os.time()) -- Garante que teremos números aleatórios diferentes a cada vez
-  local random_index = math.random(1, #precepts)
-  return precepts[random_index]
+
+  math.randomseed(os.time())
+  local precept = precepts[math.random(1, #precepts)]
+  return M.wrap_text(precept, 60) -- Quebra o texto em linhas de até 60 caracteres
 end
 
 return M 

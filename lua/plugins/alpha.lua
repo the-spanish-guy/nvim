@@ -76,9 +76,17 @@ return {
           },
         },
         { type = "padding", val = 1 },
-        { type = "text", val = {
-            "⚔️  " .. zote.get_random_precept(),
-          },
+        { type = "text", val = function()
+            local lines = zote.get_random_precept()
+            local formatted_lines = {}
+            -- Primeira linha com o ícone
+            table.insert(formatted_lines, "⚔️  " .. lines[1])
+            -- Demais linhas alinhadas com o texto da primeira linha
+            for i = 2, #lines do
+              table.insert(formatted_lines, "    " .. lines[i])
+            end
+            return formatted_lines
+          end,
           opts = {
             position = "center",
             hl = "String",
