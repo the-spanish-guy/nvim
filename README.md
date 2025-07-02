@@ -101,6 +101,9 @@ Gerenciador de instalação para LSP servers, linters e formatters.
 
 ### [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
 Integração entre Mason e LSP config. Para instalar novos servers, consulte a [lista oficial](https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers).
+Alguns arquivos foram movidos, se o link acima não funcionar, tente estes
+- [configs.md](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md)
+- [mason-registry](https://mason-registry.dev/registry/list)
 
 ### [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 Suporte a formatação e diagnósticos adicionais.
