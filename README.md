@@ -57,6 +57,9 @@ Explorador de arquivos moderno com suporte a git.
 
 ### [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 Busca fuzzy para arquivos, buffers e muito mais.
+> [!Note]
+> Para consultar a lista de extensões disponíveis veja
+> [wiki-extensions](https://github.com/nvim-telescope/telescope.nvim/wiki/Extensions)
 
 ### [treesitter.nvim](https://github.com/nvim-treesitter/nvim-treesitter)
 Parsing de sintaxe avançado para highlighting e navegação.
