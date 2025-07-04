@@ -76,6 +76,8 @@ keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", "Ir para implementa�
 keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", "Encontrar referências")
 keymap("n", "K", vim.lsp.buf.hover, "Mostrar documentação")
 
+keymap("n", "<C-z>", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", "Abre a extensão de explorador de arquivos do Telescope")
+
 -- Ações e diagnósticos
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, "Ações de código")
 keymap("n", "[d", vim.diagnostic.goto_prev, "Diagnóstico anterior")
