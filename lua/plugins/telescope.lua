@@ -36,57 +36,57 @@ return {
         defaults = {
           mappings = {
             i = {
-              ["<esc>"] = actions.close,                    -- Fecha o Telescope
-              ["<C-j>"] = actions.move_selection_next,      -- Próximo item
-              ["<C-k>"] = actions.move_selection_previous,  -- Item anterior
-              ["<C-u>"] = actions.preview_scrolling_up,     -- Rola preview para cima
-              ["<C-d>"] = actions.preview_scrolling_down,   -- Rola preview para baixo
-              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,  -- Envia para quickfix
-              ["<C-l>"] = actions.complete_tag,            -- Completa tag
-              ["<C-/>"] = actions.which_key,               -- Mostra atalhos disponíveis
-              ["<C-w>"] = { "<c-s-w>", type = "command" }, -- Permite deletar palavra no prompt
+              ["<esc>"] = actions.close,                                      -- Fecha o Telescope
+              ["<C-j>"] = actions.move_selection_next,                        -- Próximo item
+              ["<C-k>"] = actions.move_selection_previous,                    -- Item anterior
+              ["<C-u>"] = actions.preview_scrolling_up,                       -- Rola preview para cima
+              ["<C-d>"] = actions.preview_scrolling_down,                     -- Rola preview para baixo
+              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist, -- Envia para quickfix
+              ["<C-l>"] = actions.complete_tag,                               -- Completa tag
+              ["<C-/>"] = actions.which_key,                                  -- Mostra atalhos disponíveis
+              ["<C-w>"] = { "<c-s-w>", type = "command" },                    -- Permite deletar palavra no prompt
             },
             n = {
-              ["q"] = actions.close,                       -- Fecha com 'q'
-              ["<C-c>"] = actions.close,                   -- Fecha com Ctrl-c
-              ["<C-u>"] = actions.preview_scrolling_up,    -- Rola preview para cima
-              ["<C-d>"] = actions.preview_scrolling_down,  -- Rola preview para baixo
-              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,  -- Envia para quickfix
+              ["q"] = actions.close,                                          -- Fecha com 'q'
+              ["<C-c>"] = actions.close,                                      -- Fecha com Ctrl-c
+              ["<C-u>"] = actions.preview_scrolling_up,                       -- Rola preview para cima
+              ["<C-d>"] = actions.preview_scrolling_down,                     -- Rola preview para baixo
+              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist, -- Envia para quickfix
             },
           },
-          file_ignore_patterns = { "node_modules/", "*-lock.json", ".git/" },  -- Ignora estes padrões
-          selection_caret = icons.ui.DoubleChevronRight .. " ",                -- Indicador de seleção
-          prompt_prefix = " " .. icons.ui.Telescope .. " ",                    -- Ícone do prompt
-          color_devicons = true,                                               -- Ícones coloridos
+          file_ignore_patterns = { "node_modules/", "*-lock.json", ".git/" }, -- Ignora estes padrões
+          selection_caret = icons.ui.DoubleChevronRight .. " ",               -- Indicador de seleção
+          prompt_prefix = " " .. icons.ui.Telescope .. " ",                   -- Ícone do prompt
+          color_devicons = true,                                              -- Ícones coloridos
           set_env = { ["COLORTERM"] = "truecolor" },
           layout_config = {
             horizontal = {
-              preview_width = 0.55,    -- Preview ocupa 55% da largura
-              results_width = 0.8,     -- Lista de resultados ocupa 80% da largura
+              preview_width = 0.55, -- Preview ocupa 55% da largura
+              results_width = 0.8,  -- Lista de resultados ocupa 80% da largura
             },
             vertical = {
-              mirror = false,          -- Não inverte a posição do preview
+              mirror = false,     -- Não inverte a posição do preview
             },
-            width = 0.87,             -- Janela do Telescope ocupa 87% da tela
-            height = 0.80,            -- Janela do Telescope ocupa 80% da altura
-            preview_cutoff = 120,     -- Largura mínima para mostrar preview
+            width = 0.87,         -- Janela do Telescope ocupa 87% da tela
+            height = 0.80,        -- Janela do Telescope ocupa 80% da altura
+            preview_cutoff = 120, -- Largura mínima para mostrar preview
           },
           vimgrep_arguments = {
-            "rg",                     -- Usa ripgrep para busca
-            "--color=never",          -- Sem cores na saída
-            "--no-heading",           -- Sem cabeçalhos
-            "--with-filename",        -- Mostra nome do arquivo
-            "--line-number",          -- Mostra número da linha
-            "--column",               -- Mostra número da coluna
-            "--smart-case",           -- Ignora case se busca for minúscula
-            "--trim",                 -- Remove espaços em branco
+            "rg",              -- Usa ripgrep para busca
+            "--color=never",   -- Sem cores na saída
+            "--no-heading",    -- Sem cabeçalhos
+            "--with-filename", -- Mostra nome do arquivo
+            "--line-number",   -- Mostra número da linha
+            "--column",        -- Mostra número da coluna
+            "--smart-case",    -- Ignora case se busca for minúscula
+            "--trim",          -- Remove espaços em branco
           },
         },
         pickers = {
           find_files = {
-            previewer = true,           -- Mostra preview do arquivo
+            previewer = true,             -- Mostra preview do arquivo
             path_display = formattedName, -- Formato personalizado do nome
-            hidden = true,              -- Inclui arquivos ocultos
+            hidden = true,                -- Inclui arquivos ocultos
             layout_config = {
               height = 0.4,
               prompt_position = "bottom",
@@ -94,49 +94,49 @@ return {
             },
           },
           live_grep = {
-            only_sort_text = true,      -- Ordena apenas pelo texto
-            previewer = true,           -- Mostra preview do arquivo
+            only_sort_text = true, -- Ordena apenas pelo texto
+            previewer = true,      -- Mostra preview do arquivo
           },
           treesitter = {
             show_line = true,
             previewer = true,
           },
           grep_string = {
-            only_sort_text = true,      -- Ordena apenas pelo texto
-            previewer = true,           -- Mostra preview do arquivo
+            only_sort_text = true, -- Ordena apenas pelo texto
+            previewer = true,      -- Mostra preview do arquivo
           },
           buffers = {
-            previewer = false,          -- Sem preview para buffers
-            initial_mode = "normal",    -- Começa em modo normal
+            previewer = false,       -- Sem preview para buffers
+            initial_mode = "normal", -- Começa em modo normal
             mappings = {
               i = {
-                ["<C-d>"] = actions.delete_buffer,  -- Ctrl-d deleta buffer
+                ["<C-d>"] = actions.delete_buffer, -- Ctrl-d deleta buffer
               },
               n = {
-                ["dd"] = actions.delete_buffer,     -- dd deleta buffer
+                ["dd"] = actions.delete_buffer, -- dd deleta buffer
               },
             },
           },
           lsp_references = {
-            show_line = true,              -- Mostra linha no resultado
-            previewer = true,              -- Mostra preview
-            include_declaration = true,     -- Inclui declaração original
-            include_current_line = true,    -- Inclui linha atual
-            jump_type = "never",           -- Não pula automaticamente
-            fname_width = 60,              -- Largura do nome do arquivo
-            trim_text = true,              -- Remove espaços extras
+            show_line = true,            -- Mostra linha no resultado
+            previewer = true,            -- Mostra preview
+            include_declaration = true,  -- Inclui declaração original
+            include_current_line = true, -- Inclui linha atual
+            jump_type = "never",         -- Não pula automaticamente
+            fname_width = 60,            -- Largura do nome do arquivo
+            trim_text = true,            -- Remove espaços extras
           },
           lsp_definitions = {
-            show_line = true,              -- Mostra linha no resultado
-            previewer = true,              -- Mostra preview
-            jump_type = "never",           -- Não pula automaticamente
-            fname_width = 60,              -- Largura do nome do arquivo
+            show_line = true,    -- Mostra linha no resultado
+            previewer = true,    -- Mostra preview
+            jump_type = "never", -- Não pula automaticamente
+            fname_width = 60,    -- Largura do nome do arquivo
           },
           lsp_implementations = {
-            show_line = true,              -- Mostra linha no resultado
-            previewer = true,              -- Mostra preview
-            jump_type = "never",           -- Não pula automaticamente
-            fname_width = 60,              -- Largura do nome do arquivo
+            show_line = true,    -- Mostra linha no resultado
+            previewer = true,    -- Mostra preview
+            jump_type = "never", -- Não pula automaticamente
+            fname_width = 60,    -- Largura do nome do arquivo
           },
           colorscheme = {
             enable_preview = true,
@@ -145,16 +145,16 @@ return {
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({
-              previewer = true,                    -- Mostra preview
-              prompt_prefix = " " .. icons.ui.Search .. " ",  -- Ícone de busca
-              initial_mode = "insert",             -- Começa em modo insert
-              sorting_strategy = "ascending",      -- Ordem ascendente
-              layout_strategy = "horizontal",      -- Layout horizontal
+              previewer = true,                              -- Mostra preview
+              prompt_prefix = " " .. icons.ui.Search .. " ", -- Ícone de busca
+              initial_mode = "insert",                       -- Começa em modo insert
+              sorting_strategy = "ascending",                -- Ordem ascendente
+              layout_strategy = "horizontal",                -- Layout horizontal
               layout_config = {
-                prompt_position = "top",           -- Prompt no topo
+                prompt_position = "top",                     -- Prompt no topo
                 horizontal = {
-                  width = 0.5,                    -- Largura da janela
-                  preview_width = 0.6,            -- Largura do preview
+                  width = 0.5,                               -- Largura da janela
+                  preview_width = 0.6,                       -- Largura do preview
                 },
               },
             }),
@@ -259,7 +259,8 @@ return {
 
       -- Carrega as extensões
       telescope.load_extension("ui-select")
-      
+      telescope.load_extension("file_browser")
+
       -- Tenta carregar o FZF
       if has_fzf then
         local ok, err = pcall(telescope.load_extension, "fzf")
