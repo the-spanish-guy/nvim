@@ -3,6 +3,7 @@ local keymap = require("utils.keymap")
 --[[ ATALHOS BÁSICOS DE EDIÇÃO ]]
 -- Selecionar tudo
 keymap("n", "<C-a>", "ggvG$", "Seleciona Todo o arquivo")
+-- keymap("n", "<C-a>", "gg<S-v>G", "Seleciona Todo o arquivo")
 
 -- Salvar com Ctrl+S
 keymap("n", "<C-s>", ":w<CR>", "Salvar arquivo")
@@ -17,6 +18,7 @@ Dessa forma, a linha é deletada sem afetar o registro de cópia,
 exatamente como o atalho Ctrl+Shift+K do VSCode
 ]]
 keymap("n", "<C-S-k>", '"_dd', "Deletar linha sem copiar")
+keymap("n", "x", '"_x"', "Deleta caractere sem afetar o registro (clipboard)")
 
 --[[ NAVEGAÇÃO ]]
 -- Ir para a linha
@@ -38,6 +40,19 @@ keymap("n", "<C-h>", "<C-w>h", "Janela à esquerda")
 keymap("n", "<C-j>", "<C-w>j", "Janela abaixo")
 keymap("n", "<C-k>", "<C-w>k", "Janela acima")
 keymap("n", "<C-l>", "<C-w>l", "Janela à direita")
+
+--[[
+┌─────────────┬─────────────┐
+│   Janela 1  │   Janela 2  │
+│             │             │
+│             │             │
+└─────────────┴─────────────┘
+-- Redimensionando janelas
+]]--
+keymap("n", "<C-H>", "<C-w><", "(na Janela 1) - diminui largura da Janela 1, Janela 2 fica maior")
+keymap("n", "<C-K>", "<C-w>+", "aumenta altura da janela atual")
+keymap("n", "<C-J>", "<C-w>-", "diminui altura da janela atual")
+keymap("n", "<C-L>", "<C-w>>", "(na Janela 1) - aumenta largura da Janela 1, Janela 2 fica menor")
 
 --[[ LSP E CÓDIGO ]]
 -- Renomeação e Referências

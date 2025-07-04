@@ -47,3 +47,5 @@ vim.opt.swapfile = false       -- Desativa arquivos de swap
 
 -- Configuração do EditorConfig
 vim.g.loaded_editorconfig = 0  -- Ativa o suporte nativo ao EditorConfig no Neovim
+
+vim.opt.splitkeep = "cursor"   -- Mantém o cursor na mesma posição visual ao criar splits
