@@ -57,11 +57,15 @@ keymap("n", "<C-L>", "<C-w>>", "(na Janela 1) - aumenta largura da Janela 1, Jan
 --[[ LSP E CÓDIGO ]]
 -- Renomeação e Referências
 
+--[[
+--as keymaps para renomear usando F2 foram movidos para o arquivo de incremental-rename.lua
+--]]
 -- F2: Renomeia o símbolo sob o cursor
-keymap("n", "<F2>", vim.lsp.buf.rename, "Renomear símbolo")
+-- keymap("n", "<F2>", vim.lsp.buf.rename, "Renomear símbolo")
+-- keymap("n", "<F2>", ":IncRename ")
 -- Ctrl+F2: Mostra todas as referências do símbolo (usando Telescope para melhor visualização)
 --keymap("n", "<C-F2>", vim.lsp.buf.references, "Mostrar todas as referências")
-keymap("n", "<leader>rn", vim.lsp.buf.rename, "Renomear símbolo (alt F2)")
+-- keymap("n", "<leader>rn", vim.lsp.buf.rename, "Renomear símbolo (alt F2)")
 
 -- Definição e Implementação
 --[[ Keymaps LSP padrão (usando quickfix list)

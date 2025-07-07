@@ -49,3 +49,9 @@ vim.opt.swapfile = false       -- Desativa arquivos de swap
 vim.g.loaded_editorconfig = 0  -- Ativa o suporte nativo ao EditorConfig no Neovim
 
 vim.opt.splitkeep = "cursor"   -- Mantém o cursor na mesma posição visual ao criar splits
+
+--[[
+-- sem esta config abaixo setada o inc-rename não abre um buffer
+-- mostrando TODOS os arquivos que estão sofrendo a alteração
+--]]
+vim.opt.inccommand = "split"   -- Mostra prévia incremental de comandos em janela separada
