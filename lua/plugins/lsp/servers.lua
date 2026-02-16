@@ -63,4 +63,10 @@ return {
   astro = {
     filetypes = { "astro" },
   },
+  biome = {
+    root_dir = require("lspconfig.util").root_pattern(
+      "biome.json",
+      "biome.jsonc"
+    ),
+  },
 }

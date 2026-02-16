@@ -30,11 +30,17 @@ return {
 
     mason_lspconfig.setup_handlers({
       function(server_name)
+        local server_config = require("plugins.lsp.servers")[server_name] or {}
+
         lspconfig[server_name].setup({
           capabilities = capabilities,
           on_attach = require("plugins.lsp.on_attach").on_attach,
+          root_dir = server_config.root_dir,
+          filetypes = server_config.filetypes,
+          cmd = server_config.cmd,
           settings = require("plugins.lsp.servers")[server_name],
           filetypes = (require("plugins.lsp.servers")[server_name] or {}).filetypes,
+          settings = server_config.settings,
         })
       end,
     })
@@ -43,7 +49,7 @@ return {
       title = false,
       underline = true,
       virtual_text = true,
-     --[[  signs = true, ]]
+      --[[  signs = true, ]]
       update_in_insert = true,
       severity_sort = true,
       float = {
@@ -55,24 +61,28 @@ return {
       },
       signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = "" .. icons.diagnostics.Error .. "",
-            [vim.diagnostic.severity.WARN] = "" .. icons.diagnostics.Warning .. "",
-            [vim.diagnostic.severity.HINT] = "" .. icons.diagnostics.Hint .. "",
-            [vim.diagnostic.severity.INFO] = "" .. icons.diagnostics.Information .. "",
+          [vim.diagnostic.severity.ERROR] = "" .. icons.diagnostics.Error .. "",
+          [vim.diagnostic.severity.WARN] = ""
+            .. icons.diagnostics.Warning
+            .. "",
+          [vim.diagnostic.severity.HINT] = "" .. icons.diagnostics.Hint .. "",
+          [vim.diagnostic.severity.INFO] = ""
+            .. icons.diagnostics.Information
+            .. "",
         },
         linehl = {
-          [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-          [vim.diagnostic.severity.WARN] = 'WarningMsg',
-          [vim.diagnostic.severity.HINT] = 'HintMsg',
-          [vim.diagnostic.severity.INFO] = 'InformationMsg',
+          [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+          [vim.diagnostic.severity.WARN] = "WarningMsg",
+          [vim.diagnostic.severity.HINT] = "HintMsg",
+          [vim.diagnostic.severity.INFO] = "InformationMsg",
         },
         numhl = {
-            [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-            [vim.diagnostic.severity.WARN] = 'WarningMsg',
-            [vim.diagnostic.severity.HINT] = 'HintMsg',
-            [vim.diagnostic.severity.INFO] = 'InformationMsg',
+          [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+          [vim.diagnostic.severity.WARN] = "WarningMsg",
+          [vim.diagnostic.severity.HINT] = "HintMsg",
+          [vim.diagnostic.severity.INFO] = "InformationMsg",
         },
-    },
+      },
     })
 
     --[[ local signs = {
@@ -86,7 +96,6 @@ return {
       local hl = "DiagnosticSign" .. type
       -- vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end ]]
-    
 
     -- vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
     -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
