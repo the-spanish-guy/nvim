@@ -8,7 +8,7 @@ return {
       port = 0, -- 0 = auto (8421 for takeover, OS-assigned for multi)
       open_browser = true,
       debounce_ms = 300,
-      scroll_sync = true
+      scroll_sync = true,
     })
   end,
 }

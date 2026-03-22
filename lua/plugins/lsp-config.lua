@@ -4,6 +4,7 @@ return {
   dependencies = {
     { "williamboman/mason.nvim", config = true },
     "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     "b0o/schemastore.nvim",
   },
   config = function()
@@ -33,6 +34,21 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = vim.tbl_keys(require("plugins.lsp.servers")),
       automatic_enable = true,
+    })
+
+    local tools = require("plugins.lsp.tools")
+    local tools_to_install = {}
+    for name, _ in pairs(tools.formatters) do
+      table.insert(tools_to_install, name)
+    end
+    for name, _ in pairs(tools.linters) do
+      table.insert(tools_to_install, name)
+    end
+
+    require("mason-tool-installer").setup({
+      ensure_installed = tools_to_install,
+      auto_update = false,
+      run_on_start = true,
     })
 
     local icons = require("utils.icons")

@@ -35,6 +35,17 @@ return {
           ignore_whitespace = false,
           virt_text_priority = 100,
         },
+        on_attach = function(bufnr)
+          local gs = require("gitsigns")
+          local map = function(mode, l, r, desc)
+            vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
+          end
+
+          map({ "n", "v" }, "<leader>gs", gs.stage_hunk, "Stage hunk")
+          map({ "n", "v" }, "<leader>gr", gs.reset_hunk, "Reset hunk")
+          map("n", "<leader>gu", gs.undo_stage_hunk, "Undo stage hunk")
+          map("n", "<leader>gp", gs.preview_hunk, "Preview hunk")
+        end,
       })
     end,
   },

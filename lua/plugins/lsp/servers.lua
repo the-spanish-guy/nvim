@@ -7,29 +7,6 @@ return {
       },
     },
   },
-  --[[ lua_ls = {
-    settings = {
-      Lua = {
-        runtime = { version = "LuaJIT" },
-        telemetry = { enable = false },
-        diagnostics = {
-          globals = { "vim" },
-        },
-        workspace = {
-          -- make language server aware of runtime files
-          library = {
-            "${3rd}/luv/library",
-            unpack(vim.api.nvim_get_runtime_file("", true)),
-            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-            [vim.fn.stdpath("config") .. "/lua"] = true,
-          },
-        },
-        completion = {
-          callSnippet = "Replace",
-        },
-      },
-    },
-  }, ]]
   lua_ls = {
     settings = {
       Lua = {
@@ -54,7 +31,6 @@ return {
     filetypes = { "vim" },
   },
   ts_ls = {},
-  -- golangci_lint_ls = {},
   gopls = {},
   yamlls = {
     cmd = { "yaml-language-server", "--stdio" },
