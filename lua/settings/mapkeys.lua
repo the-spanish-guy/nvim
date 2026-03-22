@@ -126,5 +126,10 @@ keymap("x", "<A-Up>", ":m-2<CR>gv=gv")
 keymap("x", "<A-k>", ":m-2<CR>gv=gv")
 
 --[[ PLUGINS ]]
+-- Seletor de tema
+keymap("n", "<leader>th", function()
+  require("utils.theme_picker").pick()
+end, "Selecionar tema")
+
 -- Kulala (HTTP Client)
 keymap("n", "<C-j>", ":lua require('kulala').run()<CR>")
