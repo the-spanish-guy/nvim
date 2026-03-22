@@ -57,6 +57,9 @@ return -- lazy.nvim
       view_search = "virtualtext", -- Mostra contagem de busca como texto virtual
     },
     views = {
+      notify = {
+        timeout = 1500,
+      },
       -- Personalização da aparência das diferentes views
       cmdline_popup = {
         position = {
