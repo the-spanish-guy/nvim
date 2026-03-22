@@ -17,39 +17,30 @@ return {
         },
       },
     })
-    require("mason-lspconfig").setup({
-      ensure_installed = vim.tbl_keys(require("plugins.lsp.servers")),
-      automatic_installation = true,
-    })
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-    local lspconfig = require("lspconfig")
-    local mason_lspconfig = require("mason-lspconfig")
-    local icons = require("utils.icons")
 
-    mason_lspconfig.setup_handlers({
-      function(server_name)
-        local server_config = require("plugins.lsp.servers")[server_name] or {}
-
-        lspconfig[server_name].setup({
-          capabilities = capabilities,
-          on_attach = require("plugins.lsp.on_attach").on_attach,
-          root_dir = server_config.root_dir,
-          filetypes = server_config.filetypes,
-          cmd = server_config.cmd,
-          settings = require("plugins.lsp.servers")[server_name],
-          filetypes = (require("plugins.lsp.servers")[server_name] or {}).filetypes,
-          settings = server_config.settings,
-        })
-      end,
+    vim.lsp.config("*", {
+      capabilities = capabilities,
+      on_attach = require("plugins.lsp.on_attach").on_attach,
     })
+
+    for name, config in pairs(require("plugins.lsp.servers")) do
+      vim.lsp.config(name, config)
+    end
+
+    require("mason-lspconfig").setup({
+      ensure_installed = vim.tbl_keys(require("plugins.lsp.servers")),
+      automatic_enable = true,
+    })
+
+    local icons = require("utils.icons")
 
     vim.diagnostic.config({
       title = false,
       underline = true,
       virtual_text = true,
-      --[[  signs = true, ]]
       update_in_insert = true,
       severity_sort = true,
       float = {
@@ -61,14 +52,10 @@ return {
       },
       signs = {
         text = {
-          [vim.diagnostic.severity.ERROR] = "" .. icons.diagnostics.Error .. "",
-          [vim.diagnostic.severity.WARN] = ""
-            .. icons.diagnostics.Warning
-            .. "",
-          [vim.diagnostic.severity.HINT] = "" .. icons.diagnostics.Hint .. "",
-          [vim.diagnostic.severity.INFO] = ""
-            .. icons.diagnostics.Information
-            .. "",
+          [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+          [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
+          [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+          [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
         },
         linehl = {
           [vim.diagnostic.severity.ERROR] = "ErrorMsg",
@@ -85,20 +72,6 @@ return {
       },
     })
 
-    --[[ local signs = {
-      Hint = "" .. icons.diagnostics.Hint .. "",
-      Error = "" .. icons.diagnostics.Error .. "",
-      Warn = "" .. icons.diagnostics.Warning .. "",
-      Info = "" .. icons.diagnostics.Information .. "",
-    }
-
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      -- vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end ]]
-
-    -- vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-    -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
     vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
   end,
 }
