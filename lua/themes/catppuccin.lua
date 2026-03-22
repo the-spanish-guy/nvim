@@ -1,4 +1,4 @@
-local flavor = "mocha" -- mocha | latte | frappe | macchiato
+local flavor = "macchiato" -- mocha | latte | frappe | macchiato
 
 return {
   name = "catppuccin",

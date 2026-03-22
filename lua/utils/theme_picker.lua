@@ -55,6 +55,14 @@ M.pick = function()
   local original_name = require("themes").name
   local confirmed = false
 
+  local default_idx = 1
+  for i, entry in ipairs(entries) do
+    if entry.theme == original_name then
+      default_idx = i
+      break
+    end
+  end
+
   -- Atualiza o flavor dentro do arquivo do tema
   local function set_variant(theme_name, variant)
     local theme_file = themes_path .. "/" .. theme_name .. ".lua"
@@ -97,6 +105,7 @@ M.pick = function()
 
   pickers.new({}, {
     prompt_title = "Selecionar tema",
+    default_selection_index = default_idx,
     previewer = code_previewer,
     finder = finders.new_table({
       results = entries,
@@ -141,14 +150,13 @@ M.pick = function()
             init_file
           )
           apply_theme(entry, true)
+          package.loaded["themes"] = nil
         end
       end)
 
       -- Cancelar: reverte para o tema original
-      vim.api.nvim_create_autocmd("BufUnload", {
-        buffer = prompt_bufnr,
-        once = true,
-        callback = function()
+      actions.close:enhance({
+        post = function()
           if not confirmed then revert() end
         end,
       })

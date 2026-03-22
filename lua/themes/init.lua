@@ -1,1 +1,1 @@
-return require("themes.catppuccin")
+return require("themes.rosepine")
