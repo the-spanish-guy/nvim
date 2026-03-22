@@ -1,4 +1,4 @@
-local flavor = "night" -- mocha | latte | frappe | macchiato
+local flavor = "moon" -- night | storm | moon | day
 
 return {
   name = "tokyonight",

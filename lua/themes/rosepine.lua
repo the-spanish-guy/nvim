@@ -1,4 +1,4 @@
-local flavor = "main" -- mocha | latte | frappe | macchiato
+local flavor = "main" -- main | moon | dawn
 
 local love_colors = { main = "#eb6f92", moon = "#eb6f92", dawn = "#b4637a" }
 

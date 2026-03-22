@@ -1,4 +1,4 @@
-local flavor = "lotus" -- mocha | latte | frappe | macchiato
+local flavor = "lotus" -- wave | dragon | lotus
 
 return {
   name = "kanagawa",
