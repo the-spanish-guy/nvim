@@ -1,1 +1,1 @@
-return require("themes.rosepine")
+return require("themes.tokyonight")

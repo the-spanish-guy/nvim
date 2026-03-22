@@ -69,7 +69,8 @@ M.pick = function()
     local lines = vim.fn.readfile(theme_file)
     for i, line in ipairs(lines) do
       if line:match("^local flavor%s*=") then
-        lines[i] = 'local flavor = "' .. variant .. '" -- mocha | latte | frappe | macchiato'
+        local comment = line:match("%s*%-%-.*$") or ""
+        lines[i] = 'local flavor = "' .. variant .. '"' .. comment
         break
       end
     end
