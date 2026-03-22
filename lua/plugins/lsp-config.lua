@@ -24,7 +24,12 @@ return {
 
     vim.lsp.config("*", {
       capabilities = capabilities,
-      on_attach = require("plugins.lsp.on_attach").on_attach,
+    })
+
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        require("plugins.lsp.on_attach").on_attach(nil, args.buf)
+      end,
     })
 
     for name, config in pairs(require("plugins.lsp.servers")) do
