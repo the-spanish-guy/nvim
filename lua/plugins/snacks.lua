@@ -5,7 +5,7 @@ local function make_sections()
     { section = "header", pane = 1 },
     { pane = 2, padding = 6 },
     { section = "keys", pane = 2, gap = 1 },
-    { pane = 2, padding = 2 },
+    { pane = 2, padding = 1 },
     {
       pane = 2,
       text = { { "🦋 No will to break", hl = "SnacksDashboardFooter", align = "center" } },
@@ -34,6 +34,8 @@ local function make_sections()
       text = { { prefix .. line, hl = "SnacksDashboardDesc", align = "center" } },
     })
   end
+
+  table.insert(sections, { section = "startup" })
 
   return sections
 end
