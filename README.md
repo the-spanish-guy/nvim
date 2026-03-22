@@ -4,12 +4,13 @@
 
 ## ⚡ Requisitos
 
-- Neovim >= 0.9.0
+- Neovim >= 0.11
 - Git >= 2.19.0
 - Um terminal com suporte a true colors e fonte Nerd Font
 - Node.js >= 18 (para alguns LSP servers)
 - [ripgrep](https://github.com/BurntSushi/ripgrep) (para busca de texto)
 - [fd](https://github.com/sharkdp/fd) (para busca de arquivos)
+- [lazygit](https://github.com/jesseduffield/lazygit) (para a TUI git)
 
 ## 📦 Instalação
 
@@ -20,7 +21,7 @@ mv ~/.config/nvim ~/.config/nvim.bak
 
 2. Clone este repositório:
 ```bash
-git clone https://github.com/seu-usuario/nvim-config.git ~/.config/nvim
+git clone https://github.com/the-spanish-guy/nvim-config.git ~/.config/nvim
 ```
 
 3. Inicie o Neovim:
@@ -30,185 +31,158 @@ nvim
 
 O [Lazy.nvim](https://github.com/folke/lazy.nvim) irá automaticamente instalar todos os plugins na primeira inicialização.
 
-## 🎨 Plugins de Estilização
+## 🎨 Temas
 
-### [alpha.nvim](https://github.com/goolord/alpha-nvim)
-Dashboard inicial customizado com acesso rápido a arquivos recentes e atalhos.
+Temas disponíveis: **vague**, **catppuccin**, **rosepine**, **tokyonight**, **kanagawa** — cada um com suporte a variantes (ex: catppuccin mocha/latte/frappé/macchiato).
 
-### [dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)
-Barra de navegação estilo VSCode para fácil navegação entre símbolos e estruturas.
+- `<leader>th` — abre o seletor de temas com preview ao vivo de código
+- A seleção é persistida automaticamente entre sessões
 
-### [catppuccin.nvim](https://github.com/catppuccin/nvim)
-Tema moderno com suporte a diversos plugins e sintaxe rica.
+### Adicionando um novo tema
 
-### [vague.nvim](https://github.com/ashincoder/vague.nvim)
-Tema atual em uso, oferecendo uma paleta de cores suave e moderna para uma experiência visual agradável.
+1. Crie `lua/themes/nome.lua`:
+```lua
+local flavor = "variante-padrao"
 
-### [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-Linha de status minimalista e informativa.
+return {
+  name = "nome",               -- deve bater com o nome do arquivo
+  variants = { "a", "b" },    -- opcional
+  lualine = "nome-lualine",
+  colors = function()
+    local colors = require("tema.colors").setup({ style = flavor })
+    return { updates = colors.alguma_cor }
+  end,
+  setup = function()
+    require("tema").setup({ style = flavor })
+    vim.o.background = "dark" -- ou "light"
+    vim.cmd.colorscheme("nome-" .. flavor)
+  end,
+}
+```
 
-## 🛠️ Plugins Diversos
+2. Crie `lua/plugins/nome.lua`:
+```lua
+local theme = require("themes")
+return {
+  "owner/repo",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    if theme.name == "nome" then theme.setup() end
+  end,
+}
+```
 
-### [fidget.nvim](https://github.com/j-hui/fidget.nvim)
-Feedback visual para operações LSP em andamento.
+O picker (`<leader>th`) detecta automaticamente o novo tema.
 
-### [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
-Explorador de arquivos moderno com suporte a git.
+## 🛠️ Plugins
 
-### [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-Busca fuzzy para arquivos, buffers e muito mais.
-> [!Note]
-> Para consultar a lista de extensões disponíveis veja
-> [wiki-extensions](https://github.com/nvim-telescope/telescope.nvim/wiki/Extensions)
+### Estilização
+- **[vague.nvim](https://github.com/vague-theme/vague.nvim)** / **[catppuccin](https://github.com/catppuccin/nvim)** / **[rose-pine](https://github.com/rose-pine/neovim)** / **[tokyonight](https://github.com/folke/tokyonight.nvim)** / **[kanagawa](https://github.com/rebelot/kanagawa.nvim)** — temas
+- **[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)** — linha de status com integração ao tema ativo e indicador de updates do lazy
+- **[alpha.nvim](https://github.com/goolord/alpha-nvim)** — dashboard inicial
+- **[dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)** — barra de navegação estilo VSCode
 
-### [treesitter.nvim](https://github.com/nvim-treesitter/nvim-treesitter)
-Parsing de sintaxe avançado para highlighting e navegação.
+### Navegação & Busca
+- **[telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)** — busca fuzzy para arquivos, texto, buffers, LSP e mais
+- **[neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)** — explorador de arquivos com integração git
+
+### LSP & Código
+- **[mason.nvim](https://github.com/williamboman/mason.nvim)** — gerenciador de LSP servers, formatters e linters
+- **[mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim)** — integração mason + LSP nativo do Neovim 0.11+. [Servidores disponíveis](https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers)
+- **[conform.nvim](https://github.com/stevearc/conform.nvim)** — formatação de código
+- **[nvim-lint](https://github.com/mfussenegger/nvim-lint)** — linting
+- **[nvim-cmp](https://github.com/hrsh7th/nvim-cmp)** — autocompletação
+- **[fidget.nvim](https://github.com/j-hui/fidget.nvim)** — feedback visual para operações LSP
+- **[treesitter](https://github.com/nvim-treesitter/nvim-treesitter)** — parsing avançado para highlight e navegação
 
 > [!NOTE]
-> Se ao rodar `:checkhealth nvim-treesitter` aparecer um warning `warning tree-sitter executable not found`
-> Será necessário isntalar o pacote `npm install tree-sitter-cli`
-> [ref](https://github.com/nvim-treesitter/nvim-treesitter/issues/1097#issuecomment-2512543496)
+> Se `:checkhealth nvim-treesitter` mostrar `warning tree-sitter executable not found`, instale com `npm install tree-sitter-cli`.
 
-### [kulala.lua](https://github.com/mistweaverco/kulala.nvim)
-Cliente HTTP integrado para testes de API.
+### Git
+- **[gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)** — indicadores de hunk na lateral e blame inline
+- **[lazygit.nvim](https://github.com/kdheepak/lazygit.nvim)** — TUI git completa
+- **[diffview.nvim](https://github.com/sindrets/diffview.nvim)** — diff lado a lado e histórico de arquivos
 
-## 📚 Plugins para Documentação
-
-### [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
-Preview em tempo real de arquivos markdown.
-
-### [markdown.nvim](https://github.com/MeanderingProgrammer/markdown.nvim)
-Funcionalidades extras para edição markdown.
-
-### [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
-Destaque e navegação para comentários TODO e similares.
-
-## 🔄 Plugins para Versionamento
-
-### [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-Indicadores de git na lateral e funcionalidades git inline.
-
-### [Diffview.nvim](https://github.com/sindrets/diffview.nvim)
-Interface visual para diffs e resolução de conflitos.
-
-### [fugitive.vim](https://github.com/tpope/vim-fugitive)
-Interface git completa dentro do Neovim.
-
-## 🔧 Configuração LSP
-
-### [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-Configurações prontas para diversos language servers.
-
-### [mason.nvim](https://github.com/williamboman/mason.nvim)
-Gerenciador de instalação para LSP servers, linters e formatters.
-
-### [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
-Integração entre Mason e LSP config. Para instalar novos servers, consulte a [lista oficial](https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers).
-Alguns arquivos foram movidos, se o link acima não funcionar, tente estes
-- [configs.md](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md)
-- [mason-registry](https://mason-registry.dev/registry/list)
-
-### [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
-Suporte a formatação e diagnósticos adicionais.
-
-### [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-Engine de autocompletação altamente extensível.
+### Utilitários
+- **[kulala.nvim](https://github.com/mistweaverco/kulala.nvim)** — cliente HTTP integrado
+- **[markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)** — preview em tempo real de markdown
+- **[render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)** — renderização de markdown no buffer
+- **[todo-comments.nvim](https://github.com/folke/todo-comments.nvim)** — destaque para TODO/FIXME e similares
 
 ## ⌨️ Atalhos Principais
 
 ### Geral
-- `<Space>` - Tecla líder
-- `<C-s>` - Salvar arquivo
-- `<leader>x` - Fechar buffer
-- `<C-h/j/k/l>` - Navegar entre janelas
+| Atalho | Ação |
+|--------|------|
+| `<Space>` | Tecla líder |
+| `<C-s>` | Salvar arquivo |
+| `<leader>x` | Fechar buffer |
+| `<C-h/j/k/l>` | Navegar entre janelas |
+| `<S-h>` / `<S-l>` | Buffer anterior / próximo |
 
-### Edição Básica
-- `<C-a>` - Selecionar todo o arquivo
-- `<C-S-k>` - Deletar linha sem copiar (estilo VSCode)
-- `<A-j>` / `<A-Down>` - Mover linha/seleção para baixo
-- `<A-k>` / `<A-Up>` - Mover linha/seleção para cima
+### Edição
+| Atalho | Ação |
+|--------|------|
+| `<C-a>` | Selecionar tudo |
+| `<C-S-k>` | Deletar linha sem copiar |
+| `<A-j>` / `<A-k>` | Mover linha/seleção para baixo/cima |
+| `<C-g>` | Ir para linha específica |
 
-### Navegação
-- `<C-g>` - Ir para linha específica
-- `<S-h>` - Buffer anterior
-- `<S-l>` - Próximo buffer
-
-### Gerenciamento de Janelas
-- `<leader>sv` - Dividir verticalmente
-- `<leader>sh` - Dividir horizontalmente
-
-### LSP e Código
-- `<F2>` - Renomear símbolo
-- `<leader>rn` - Renomear símbolo (alternativo)
-- `gd` - Ir para definição (Telescope)
-- `gi` - Ir para implementação (Telescope)
-- `gr` - Encontrar referências (Telescope)
-- `K` - Mostrar documentação
-- `<leader>ca` - Ações de código
-- `[d]` - Diagnóstico anterior
-- `]d` - Próximo diagnóstico
-- `<leader>d` - Mostrar diagnóstico
-- `<leader>q` - Lista de diagnósticos
-- `<leader>gf` - Formatar código
-
-### Workspace
-- `<leader>wa` - Adicionar pasta ao workspace
-- `<leader>wr` - Remover pasta do workspace
-- `<leader>wl` - Listar pastas do workspace
+### LSP & Código
+| Atalho | Ação |
+|--------|------|
+| `gd` | Ir para definição |
+| `gi` | Ir para implementação |
+| `gr` | Encontrar referências |
+| `go` | Ir para definição de tipo |
+| `gD` | Ir para declaração |
+| `K` | Mostrar documentação |
+| `<F2>` | Renomear símbolo (incremental) |
+| `<leader>ca` | Ações de código |
+| `<leader>gf` | Formatar arquivo |
+| `<leader>v` | Ir para definição em split vertical |
+| `[d` / `]d` | Diagnóstico anterior / próximo |
+| `<leader>d` | Mostrar diagnóstico inline |
 
 ### Telescope
-- `<C-p>` - Buscar arquivos
-- `<leader>fg` - Buscar texto (grep)
-- `<leader>fb` - Listar buffers
-- `<leader>fh` - Buscar na ajuda
-- `<leader>fs` - Buscar palavra sob cursor
-- `<leader>fr` - Retomar última busca
+| Atalho | Ação |
+|--------|------|
+| `<C-p>` | Buscar arquivos |
+| `<leader>fg` | Buscar texto (grep) |
+| `<leader>fb` | Listar buffers |
+| `<leader>fs` | Buscar palavra sob cursor |
+| `<leader>fr` | Retomar última busca |
+| `<leader>th` | Seletor de temas |
 
-### Neo-tree (Explorador de Arquivos)
-- `<C-b>` - Abrir/fechar explorador de arquivos
+### Git
+| Atalho | Ação |
+|--------|------|
+| `<leader>lg` | Abrir lazygit |
+| `<leader>df` | Diff do arquivo atual |
+| `<leader>dfh` | Histórico do arquivo atual |
+| `<leader>gs` | Stage hunk |
+| `<leader>gr` | Reset hunk |
+| `<leader>gp` | Preview hunk |
 
-### HTTP Client (Kulala)
-- `<C-j>` - Executar requisição HTTP
+### Janelas & Explorador
+| Atalho | Ação |
+|--------|------|
+| `<C-b>` | Abrir/fechar neo-tree |
+| `<leader>sv` | Dividir verticalmente |
+| `<leader>sh` | Dividir horizontalmente |
 
-### Completions (nvim-cmp)
-- `<C-Space>` - Abrir completions
-- `<C-e>` - Fechar completions
-- `<CR>` - Confirmar seleção
-- `<Tab>` - Próxima sugestão/expandir snippet
-- `<S-Tab>` - Sugestão anterior
-- `<C-b>` - Rolar documentação para cima
-- `<C-f>` - Rolar documentação para baixo
+### HTTP (Kulala)
+| Atalho | Ação |
+|--------|------|
+| `<C-j>` | Executar requisição HTTP |
 
 ## 🔍 Troubleshooting
 
-### Problemas Comuns
-
-1. **LSP não está funcionando**
-   - Verifique se o language server está instalado via `:Mason`
-   - Confira os logs com `:LspLog`
-
-2. **Treesitter highlighting não funciona**
-   - Instale o parser para sua linguagem: `:TSInstall <language>`
-   - Verifique o status: `:TSModuleInfo`
-
-3. **Telescope está lento**
-   - Certifique-se de ter `ripgrep` instalado
-   - Use `fd` para busca de arquivos mais rápida
-
-4. **Ícones não aparecem**
-   - Instale uma Nerd Font
-   - Configure seu terminal para usar a fonte
-
-## 🤝 Contribuindo
-
-Sinta-se à vontade para abrir issues ou PRs com melhorias!
-
-## 📝 TODO
-
-- [ ] Adicionar mais snippets
-- [ ] Melhorar a documentação dos keymaps
-- [ ] Adicionar testes
-- [ ] Otimizar carregamento de plugins
+1. **LSP não funciona** — verifique `:Mason` e `:LspLog`
+2. **Treesitter sem highlight** — `:TSInstall <linguagem>`
+3. **Telescope lento** — confirme que `ripgrep` e `fd` estão instalados
+4. **Ícones não aparecem** — instale uma Nerd Font e configure o terminal
 
 ---
 
