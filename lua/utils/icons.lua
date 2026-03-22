@@ -89,6 +89,8 @@ return {
     Dashboard = "",
     DividerLeft = "",
     DividerRight = "",
+    RoundedLeft = "",
+    RoundedRight = "",
     DoubleChevronRight = "»",
     Ellipsis = "",
     EmptyFolder = "",
@@ -158,9 +160,11 @@ return {
     Smiley = "",
     Package = "",
     CircuitBoard = "",
-    Corinthians = "󰀱"
+    Corinthians = "󰀱",
+    Percent = "󱉸",
+    BoldPercent = "",
   },
   files = {
-    neovim = ""
-  }
+    neovim = "",
+  },
 }

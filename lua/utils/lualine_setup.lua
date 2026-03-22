@@ -9,6 +9,11 @@ M.apply = function(theme)
     options = {
       theme = theme.lualine,
       icons_enabled = true,
+      component_separators = { left = "", right = "" },
+      section_separators = {
+        left = icons.ui.RoundedRight,
+        right = icons.ui.RoundedLeft,
+      },
       refresh = {
         statusline = 100,
         tabline = 100,
@@ -20,6 +25,11 @@ M.apply = function(theme)
         {
           "mode",
           color = { gui = "bold" },
+          separator = {
+            left = icons.ui.RoundedLeft,
+            right = icons.ui.RoundedRight,
+          },
+          right_padding = 2,
           icon = icons.misc.Corinthians,
         },
       },
@@ -27,6 +37,11 @@ M.apply = function(theme)
         {
           "branch",
           icon = icons.git.Branch,
+          separator = {
+            left = icons.ui.RoundedLeft,
+            right = icons.ui.RoundedRight,
+          },
+          right_padding = 2,
           fmt = function(str)
             if str and #str > 8 then
               return string.sub(str, 1, 8) .. "…"
@@ -66,10 +81,15 @@ M.apply = function(theme)
       },
       lualine_x = {
         {
-          require("noice").api.status.command.get,
-          cond = require("noice").api.status.command.has,
+          function()
+            return "REC @" .. vim.fn.reg_recording()
+          end,
+          cond = function()
+            return vim.fn.reg_recording() ~= ""
+          end,
           color = { fg = "#ff9e64" },
         },
+        { "searchcount" },
         {
           lazy_status.updates,
           cond = lazy_status.has_updates,
@@ -80,10 +100,23 @@ M.apply = function(theme)
         { "filetype" },
       },
       lualine_y = {
-        { "progress" },
+        {
+          function()
+            local line = vim.fn.line(".")
+            local total = vim.fn.line("$")
+            return math.floor(line / total * 100) .. icons.misc.Percent
+          end,
+        },
       },
       lualine_z = {
-        { "location" },
+        {
+          "location",
+          separator = {
+            left = icons.ui.RoundedLeft,
+            right = icons.ui.RoundedRight,
+          },
+          left_padding = 2,
+        },
       },
     },
     extensions = { "neo-tree" },
