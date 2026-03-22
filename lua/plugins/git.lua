@@ -4,33 +4,22 @@ return {
     config = function()
       local icons = require("utils.icons")
       require("gitsigns").setup({
-
         auto_attach = true,
         signs = {
-          add = {
-            text = icons.ui.BoldLineLeft,
-          },
-          change = {
-            text = icons.ui.BoldLineLeft,
-          },
-          delete = {
-            text = icons.ui.TriangleShortArrowRight,
-          },
-          topdelete = {
-            text = icons.ui.TriangleShortArrowRight,
-          },
-          changedelete = {
-            text = icons.ui.BoldLineLeft,
-          },
+          add = { text = icons.ui.BoldLineLeft },
+          change = { text = icons.ui.BoldLineLeft },
+          delete = { text = icons.ui.TriangleShortArrowRight },
+          topdelete = { text = icons.ui.TriangleShortArrowRight },
+          changedelete = { text = icons.ui.BoldLineLeft },
         },
-        signcolumn = true,         -- Toggle with `:Gitsigns toggle_signs`
-        numhl = false,             -- Toggle with `:Gitsigns toggle_numhl`
-        linehl = false,            -- Toggle with `:Gitsigns toggle_linehl`
-        word_diff = false,         -- Toggle with `:Gitsigns toggle_word_diff`
-        current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+        signcolumn = true,
+        numhl = false,
+        linehl = false,
+        word_diff = false,
+        current_line_blame = true,
         current_line_blame_opts = {
           virt_text = true,
-          virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+          virt_text_pos = "eol",
           delay = 1000,
           ignore_whitespace = false,
           virt_text_priority = 100,
@@ -49,50 +38,38 @@ return {
       })
     end,
   },
-  { "tpope/vim-fugitive" },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = "LazyGit",
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    },
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
   {
     "sindrets/diffview.nvim",
-    event = "VeryLazy",
     cmd = {
       "DiffviewOpen",
       "DiffviewClose",
       "DiffviewToggleFiles",
       "DiffviewFocusFiles",
+      "DiffviewFileHistory",
+    },
+    keys = {
+      { "<leader>df", "<cmd>DiffviewOpen<cr>", desc = "Diffview open" },
+      { "<leader>dfh", "<cmd>DiffviewFileHistory %<cr>", desc = "Diffview file history" },
     },
     config = function()
-      -- see https://github.com/sindrets/diffview.nvim/blob/main/USAGE.md
       require("diffview").setup({
         keymaps = {
+          view = {
+            { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
+          },
           file_panel = {
-            {
-              "n",
-              "<leaeder>cc",
-              function()
-                vim.ui.input({ prompt = "Commit message: " }, function(msg)
-                  if not msg then
-                    return
-                  end
-                  local results = vim
-                      .system({ "git", "commit", "-m", msg }, { text = true })
-                      :wait()
-
-                  if results.code ~= 0 then
-                    vim.notify(
-                      "Commit failed with the message: \n"
-                      .. vim.trim(results.stdout .. "\n" .. results.stderr),
-                      vim.log.levels.ERROR,
-                      { title = "Commit" }
-                    )
-                  else
-                    vim.notify(
-                      results.stdout,
-                      vim.log.levels.INFO,
-                      { title = "Commit" }
-                    )
-                  end
-                end)
-              end,
-            },
+            { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
+          },
+          file_history_panel = {
+            { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
           },
         },
       })
@@ -100,5 +77,3 @@ return {
   },
   { "mbbill/undotree" },
 }
-
--- add comment teste
