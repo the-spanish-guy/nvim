@@ -29,15 +29,7 @@ return -- lazy.nvim
         ["vim.lsp.util.stylize_markdown"] = true,
       },
       -- hover = { enabled = false },
-      signature = {
-        enabled = true,
-        auto_open = {
-          enabled = true,
-          trigger = true,     -- Mostra automaticamente a ajuda de assinatura ao digitar parênteses ou vírgula
-          luasnip = true,     -- Mostra assinatura ao pular entre snippets do LuaSnip
-          throttle = 50,      -- Delay de 50ms para evitar muitas atualizações
-        },
-      },
+      signature = { enabled = false },
     },
     -- you can enable a preset for easier configuration
     presets = {

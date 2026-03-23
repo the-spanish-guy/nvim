@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 M.on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then

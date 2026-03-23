@@ -40,9 +40,8 @@ return {
     filetypes = { "astro" },
   },
   biome = {
-    root_dir = require("lspconfig.util").root_pattern(
-      "biome.json",
-      "biome.jsonc"
-    ),
+    root_dir = function(bufnr)
+      return vim.fs.root(bufnr, { "biome.json", "biome.jsonc" })
+    end,
   },
 }

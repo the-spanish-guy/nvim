@@ -69,20 +69,31 @@ Formatters e linters ficam centralizados em `lua/plugins/lsp/tools.lua`. Adicion
 
 ## Autocompletação
 
-As sources do nvim-cmp são divididas em base (LSP, snippets, path, buffer, calc — disponíveis em tudo) e específicas por filetype. SQL e LaTeX já têm sources dedicados configurados e só aparecem nos filetypes corretos.
+Usa **blink.cmp** como engine de completion. Sources base (LSP, snippets, path, buffer, calc) disponíveis em qualquer filetype. SQL e LaTeX têm sources dedicados que só aparecem nos filetypes corretos.
+
+Snippets carregados nativamente do `friendly-snippets`.
 
 Para adicionar um source específico de linguagem, edite `lua/plugins/completions.lua`:
 
 ```lua
-cmp.setup.filetype({ "python" }, {
-  sources = cmp.config.sources(vim.list_extend(
-    vim.deepcopy(base_sources),
-    { { name = "nome_do_source" } }
-  )),
-})
+-- 1. adicione o plugin como dependência
+dependencies = { "autor/cmp-nome" }
+
+-- 2. registre o provider via blink.compat
+providers = {
+  nome = {
+    name = "nome",
+    module = "blink.compat.source",
+  },
+}
+
+-- 3. adicione ao filetype desejado
+per_filetype = {
+  python = { "lsp", "path", "snippets", "buffer", "nome" },
+}
 ```
 
-Se o source faz sentido em qualquer arquivo, vai em `base_sources` mesmo.
+Se o source faz sentido em qualquer arquivo, adicione em `sources.default` no lugar do `per_filetype`.
 
 ## Atalhos
 
@@ -114,6 +125,18 @@ Se o source faz sentido em qualquer arquivo, vai em `base_sources` mesmo.
 | `[d` / `]d` | Diagnóstico anterior / próximo |
 | `<leader>d` | Mostrar diagnóstico |
 
+### Treesitter Textobjects
+| Atalho | Ação |
+|--------|------|
+| `vaf` / `vif` | Selecionar função outer / inner |
+| `vac` / `vic` | Selecionar classe outer / inner |
+| `vaa` / `via` | Selecionar argumento outer / inner |
+| `]f` / `[f` | Próxima / anterior função (início) |
+| `]F` / `[F` | Próxima / anterior função (fim) |
+| `]c` / `[c` | Próxima / anterior classe (início) |
+| `]C` / `[C` | Próxima / anterior classe (fim) |
+| `<leader>sa` / `<leader>sA` | Swap argumento com próximo / anterior |
+
 ### Telescope
 | Atalho | Ação |
 |--------|------|
@@ -138,6 +161,7 @@ Se o source faz sentido em qualquer arquivo, vai em `base_sources` mesmo.
 | `<C-b>` | Neo-tree |
 | `<leader>sv` / `<leader>sh` | Split vertical / horizontal |
 | `<C-j>` | Executar requisição HTTP (Kulala) |
+| `<leader>bd` | Fechar buffer sem fechar o split |
 
 ## Troubleshooting
 
