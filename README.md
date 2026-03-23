@@ -1,52 +1,35 @@
-# NEOVIM Configs
+# nvim config
 
-> Minhas configurações personalizadas para o Neovim, focadas em produtividade e uma experiência moderna de desenvolvimento.
+Minha config pessoal do Neovim. Construída em cima do [lazy.nvim](https://github.com/folke/lazy.nvim), usando a API nativa de LSP do Neovim 0.11+.
 
-## ⚡ Requisitos
+## Instalação
 
-- Neovim >= 0.11
-- Git >= 2.19.0
-- Um terminal com suporte a true colors e fonte Nerd Font
-- Node.js >= 18 (para alguns LSP servers)
-- [ripgrep](https://github.com/BurntSushi/ripgrep) (para busca de texto)
-- [fd](https://github.com/sharkdp/fd) (para busca de arquivos)
-- [lazygit](https://github.com/jesseduffield/lazygit) (para a TUI git)
+Precisa ter instalado: `ripgrep`, `fd`, `lazygit` e Node.js 18+. Uma Nerd Font no terminal também.
 
-## 📦 Instalação
-
-1. Faça backup da sua configuração atual:
 ```bash
 mv ~/.config/nvim ~/.config/nvim.bak
-```
-
-2. Clone este repositório:
-```bash
 git clone https://github.com/the-spanish-guy/nvim-config.git ~/.config/nvim
-```
-
-3. Inicie o Neovim:
-```bash
 nvim
 ```
 
-O [Lazy.nvim](https://github.com/folke/lazy.nvim) irá automaticamente instalar todos os plugins na primeira inicialização.
+O lazy.nvim instala tudo na primeira abertura.
 
-## 🎨 Temas
+## Temas
 
-Temas disponíveis: **vague**, **catppuccin**, **rosepine**, **tokyonight**, **kanagawa** — cada um com suporte a variantes (ex: catppuccin mocha/latte/frappé/macchiato).
+`<leader>th` abre um picker com preview ao vivo — navegue com `j/k` e veja o tema aplicado em tempo real. Confirmar com Enter salva a escolha entre sessões.
 
-- `<leader>th` — abre o seletor de temas com preview ao vivo de código
-- A seleção é persistida automaticamente entre sessões
+Temas disponíveis: **vague**, **catppuccin**, **rosepine**, **tokyonight**, **kanagawa**.
 
 ### Adicionando um novo tema
 
-1. Crie `lua/themes/nome.lua`:
+Crie `lua/themes/nome.lua`:
+
 ```lua
 local flavor = "variante-padrao"
 
 return {
-  name = "nome",               -- deve bater com o nome do arquivo
-  variants = { "a", "b" },    -- opcional
+  name = "nome",
+  variants = { "a", "b" }, -- opcional
   lualine = "nome-lualine",
   colors = function()
     local colors = require("tema.colors").setup({ style = flavor })
@@ -54,13 +37,14 @@ return {
   end,
   setup = function()
     require("tema").setup({ style = flavor })
-    vim.o.background = "dark" -- ou "light"
+    vim.o.background = "dark"
     vim.cmd.colorscheme("nome-" .. flavor)
   end,
 }
 ```
 
-2. Crie `lua/plugins/nome.lua`:
+E crie `lua/plugins/nome.lua`:
+
 ```lua
 local theme = require("themes")
 return {
@@ -73,116 +57,94 @@ return {
 }
 ```
 
-O picker (`<leader>th`) detecta automaticamente o novo tema.
+O picker detecta automaticamente.
 
-## 🛠️ Plugins
+## LSP
 
-### Estilização
-- **[vague.nvim](https://github.com/vague-theme/vague.nvim)** / **[catppuccin](https://github.com/catppuccin/nvim)** / **[rose-pine](https://github.com/rose-pine/neovim)** / **[tokyonight](https://github.com/folke/tokyonight.nvim)** / **[kanagawa](https://github.com/rebelot/kanagawa.nvim)** — temas
-- **[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)** — linha de status com integração ao tema ativo e indicador de updates do lazy
-- **[alpha.nvim](https://github.com/goolord/alpha-nvim)** — dashboard inicial
-- **[dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)** — barra de navegação estilo VSCode
+Servidores gerenciados pelo Mason — para adicionar um novo, basta incluir em `lua/plugins/lsp/servers.lua`. O Mason instala e o LSP conecta automaticamente.
 
-### Navegação & Busca
-- **[telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)** — busca fuzzy para arquivos, texto, buffers, LSP e mais
-- **[neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)** — explorador de arquivos com integração git
+Formatters e linters ficam centralizados em `lua/plugins/lsp/tools.lua`. Adicionar lá já resolve instalação (Mason), configuração (conform/nvim-lint) e filetypes.
 
-### LSP & Código
-- **[mason.nvim](https://github.com/williamboman/mason.nvim)** — gerenciador de LSP servers, formatters e linters
-- **[mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim)** — integração mason + LSP nativo do Neovim 0.11+. [Servidores disponíveis](https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers)
-- **[conform.nvim](https://github.com/stevearc/conform.nvim)** — formatação de código
-- **[nvim-lint](https://github.com/mfussenegger/nvim-lint)** — linting
-- **[nvim-cmp](https://github.com/hrsh7th/nvim-cmp)** — autocompletação
-- **[fidget.nvim](https://github.com/j-hui/fidget.nvim)** — feedback visual para operações LSP
-- **[treesitter](https://github.com/nvim-treesitter/nvim-treesitter)** — parsing avançado para highlight e navegação
+**`<leader>ft`** abre um picker para trocar o filetype do buffer atual, igual ao seletor de linguagem do VSCode. Funciona em arquivos dentro de projetos e em buffers sem nome — em ambos os casos o LSP inicia automaticamente.
 
-> [!NOTE]
-> Se `:checkhealth nvim-treesitter` mostrar `warning tree-sitter executable not found`, instale com `npm install tree-sitter-cli`.
+## Autocompletação
 
-### Git
-- **[gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)** — indicadores de hunk na lateral e blame inline
-- **[lazygit.nvim](https://github.com/kdheepak/lazygit.nvim)** — TUI git completa
-- **[diffview.nvim](https://github.com/sindrets/diffview.nvim)** — diff lado a lado e histórico de arquivos
+As sources do nvim-cmp são divididas em base (LSP, snippets, path, buffer, calc — disponíveis em tudo) e específicas por filetype. SQL e LaTeX já têm sources dedicados configurados e só aparecem nos filetypes corretos.
 
-### Utilitários
-- **[kulala.nvim](https://github.com/mistweaverco/kulala.nvim)** — cliente HTTP integrado
-- **[markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)** — preview em tempo real de markdown
-- **[render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)** — renderização de markdown no buffer
-- **[todo-comments.nvim](https://github.com/folke/todo-comments.nvim)** — destaque para TODO/FIXME e similares
+Para adicionar um source específico de linguagem, edite `lua/plugins/completions.lua`:
 
-## ⌨️ Atalhos Principais
+```lua
+cmp.setup.filetype({ "python" }, {
+  sources = cmp.config.sources(vim.list_extend(
+    vim.deepcopy(base_sources),
+    { { name = "nome_do_source" } }
+  )),
+})
+```
+
+Se o source faz sentido em qualquer arquivo, vai em `base_sources` mesmo.
+
+## Atalhos
 
 ### Geral
 | Atalho | Ação |
 |--------|------|
-| `<Space>` | Tecla líder |
-| `<C-s>` | Salvar arquivo |
+| `<Space>` | Leader |
+| `<C-s>` | Salvar |
 | `<leader>x` | Fechar buffer |
-| `<C-h/j/k/l>` | Navegar entre janelas |
 | `<S-h>` / `<S-l>` | Buffer anterior / próximo |
+| `<C-h/j/k/l>` | Navegar entre janelas |
 
 ### Edição
 | Atalho | Ação |
 |--------|------|
 | `<C-a>` | Selecionar tudo |
 | `<C-S-k>` | Deletar linha sem copiar |
-| `<A-j>` / `<A-k>` | Mover linha/seleção para baixo/cima |
-| `<C-g>` | Ir para linha específica |
+| `<A-j>` / `<A-k>` | Mover linha/seleção |
+| `<C-g>` | Ir para linha |
 
 ### LSP & Código
 | Atalho | Ação |
 |--------|------|
-| `gd` | Ir para definição |
-| `gi` | Ir para implementação |
-| `gr` | Encontrar referências |
-| `go` | Ir para definição de tipo |
-| `gD` | Ir para declaração |
-| `K` | Mostrar documentação |
-| `<F2>` | Renomear símbolo (incremental) |
-| `<leader>ca` | Ações de código |
-| `<leader>gf` | Formatar arquivo |
-| `<leader>v` | Ir para definição em split vertical |
+| `gd` / `gi` / `gr` | Definição / implementação / referências |
+| `K` | Documentação |
+| `<F2>` | Renomear símbolo |
+| `<leader>ca` | Code actions |
+| `<leader>gf` | Formatar |
 | `[d` / `]d` | Diagnóstico anterior / próximo |
-| `<leader>d` | Mostrar diagnóstico inline |
+| `<leader>d` | Mostrar diagnóstico |
 
 ### Telescope
 | Atalho | Ação |
 |--------|------|
 | `<C-p>` | Buscar arquivos |
-| `<leader>fg` | Buscar texto (grep) |
-| `<leader>fb` | Listar buffers |
-| `<leader>fs` | Buscar palavra sob cursor |
-| `<leader>fr` | Retomar última busca |
+| `<leader>fg` | Grep |
+| `<leader>fb` | Buffers abertos |
+| `<leader>fs` | Palavra sob cursor |
 | `<leader>th` | Seletor de temas |
+| `<leader>ft` | Seletor de filetype |
 
 ### Git
 | Atalho | Ação |
 |--------|------|
-| `<leader>lg` | Abrir lazygit |
-| `<leader>df` | Diff do arquivo atual |
-| `<leader>dfh` | Histórico do arquivo atual |
-| `<leader>gs` | Stage hunk |
-| `<leader>gr` | Reset hunk |
-| `<leader>gp` | Preview hunk |
+| `<leader>lg` | Lazygit |
+| `<leader>df` | Diff do arquivo |
+| `<leader>dfh` | Histórico do arquivo |
+| `<leader>gs` / `<leader>gr` / `<leader>gp` | Stage / reset / preview hunk |
 
-### Janelas & Explorador
+### Misc
 | Atalho | Ação |
 |--------|------|
-| `<C-b>` | Abrir/fechar neo-tree |
-| `<leader>sv` | Dividir verticalmente |
-| `<leader>sh` | Dividir horizontalmente |
+| `<C-b>` | Neo-tree |
+| `<leader>sv` / `<leader>sh` | Split vertical / horizontal |
+| `<C-j>` | Executar requisição HTTP (Kulala) |
 
-### HTTP (Kulala)
-| Atalho | Ação |
-|--------|------|
-| `<C-j>` | Executar requisição HTTP |
+## Troubleshooting
 
-## 🔍 Troubleshooting
-
-1. **LSP não funciona** — verifique `:Mason` e `:LspLog`
-2. **Treesitter sem highlight** — `:TSInstall <linguagem>`
-3. **Telescope lento** — confirme que `ripgrep` e `fd` estão instalados
-4. **Ícones não aparecem** — instale uma Nerd Font e configure o terminal
+- **LSP não conecta** → `:Mason` pra ver se o servidor está instalado, `:LspLog` pra ver erros
+- **Sem highlight** → `:TSInstall <linguagem>`
+- **Telescope lento** → confirma que `ripgrep` e `fd` estão no PATH
+- **Sem ícones** → Nerd Font não configurada no terminal
 
 ---
 

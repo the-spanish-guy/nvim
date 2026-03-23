@@ -51,10 +51,19 @@ return {
       Operator = "󰆕",
       TypeParameter = "󰅲",
     }
+
     require("luasnip.loaders.from_vscode").lazy_load()
     luasnip.config.setup({})
 
-    cmp.setup({
+    local base_sources = {
+      { name = "nvim_lsp" },
+      { name = "luasnip" },
+      { name = "path" },
+      { name = "calc" },
+      { name = "buffer" },
+    }
+
+    local base_config = {
       snippet = {
         expand = function(args)
           require("luasnip").lsp_expand(args.body)
@@ -95,33 +104,19 @@ return {
           end
         end, { "i", "s" }),
       }),
-      sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" }, -- For luasnip users.
-        { name = "path" },
-        { name = 'calc' },
-        {
-          name = "latex_symbols",
-          option = {
-            strategy = 0, -- mixed
-          },
-        },
-        { name = "buffer" },
-        { name = 'sql' }
-      }),
       formatting = {
         format = function(entry, vim_item)
-          local lspKing_ok, lspkind = pcall(require, "lspkind")
-          if not lspKing_ok then
+          local lspkind_ok, lspkind = pcall(require, "lspkind")
+          if not lspkind_ok then
             vim_item.kind =
               string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
-
             vim_item.menu = ({
               nvim_lsp = "[LSP]",
               luasnip = "[LuaSnip]",
               buffer = "[Buffer]",
               latex_symbols = "[LaTeX]",
               calc = "[Calc]",
+              sql = "[SQL]",
             })[entry.source.name]
             return vim_item
           else
@@ -129,6 +124,25 @@ return {
           end
         end,
       },
+      sources = cmp.config.sources(base_sources),
+    }
+
+    cmp.setup(base_config)
+
+    -- SQL: adiciona keywords SQL
+    cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
+      sources = cmp.config.sources(vim.list_extend(
+        vim.deepcopy(base_sources),
+        { { name = "sql" } }
+      )),
+    })
+
+    -- LaTeX: adiciona símbolos LaTeX
+    cmp.setup.filetype({ "tex", "latex", "plaintex" }, {
+      sources = cmp.config.sources(vim.list_extend(
+        vim.deepcopy(base_sources),
+        { { name = "latex_symbols", option = { strategy = 0 } } }
+      )),
     })
   end,
 }

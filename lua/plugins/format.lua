@@ -1,6 +1,7 @@
 return {
   "stevearc/conform.nvim",
   event = { "BufReadPre", "BufNewFile" },
+  keys = { { "<leader>gf", mode = { "n", "v" } } },
   config = function()
     local tools = require("plugins.lsp.tools")
 

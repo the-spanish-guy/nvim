@@ -131,5 +131,10 @@ keymap("n", "<leader>th", function()
   require("utils.theme_picker").pick()
 end, "Selecionar tema")
 
+-- Seletor de tipo de arquivo
+keymap("n", "<leader>ft", function()
+  require("utils.ft_picker").pick()
+end, "Selecionar tipo de arquivo")
+
 -- Kulala (HTTP Client)
 keymap("n", "<C-j>", ":lua require('kulala').run()<CR>")
