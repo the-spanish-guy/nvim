@@ -127,9 +127,10 @@ keymap("x", "<A-k>", ":m-2<CR>gv=gv")
 
 --[[ PLUGINS ]]
 -- Seletor de tema
-keymap("n", "<leader>th", function()
-  require("utils.theme_picker").pick()
-end, "Selecionar tema")
+keymap("n", "<leader>th", "<cmd>Themery<cr>", "Selecionar tema")
+keymap("n", "<leader>tT", function()
+  require("telescope.builtin").colorscheme({ enable_preview = true })
+end, "Temas (telescope)")
 
 -- Seletor de tipo de arquivo
 keymap("n", "<leader>ft", function()

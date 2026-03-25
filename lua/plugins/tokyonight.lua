@@ -1,12 +1,10 @@
-local theme = require("themes")
-
 return {
   "folke/tokyonight.nvim",
   lazy = false,
   priority = 1000,
   config = function()
-    if theme.name == "tokyonight" then
-      theme.setup()
-    end
+    require("tokyonight").setup({
+      light_style = "day",
+    })
   end,
 }
