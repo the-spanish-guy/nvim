@@ -25,6 +25,7 @@ return {
         "tmux",
         "toml",
         "yaml",
+        "latex",
         "jsdoc",
         "regex",
         "astro",

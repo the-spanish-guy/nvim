@@ -169,6 +169,21 @@ Se o source faz sentido em qualquer arquivo, adicione em `sources.default` no lu
 - **Sem highlight** → `:TSInstall <linguagem>`
 - **Telescope lento** → confirma que `ripgrep` e `fd` estão no PATH
 - **Sem ícones** → Nerd Font não configurada no terminal
+- **Fórmulas LaTeX não renderizam (render-markdown)** → É necessário ter ao menos uma das seguintes dependências instaladas para converter strings LaTeX em unicode:
+  - **libtexprintf** (usa `utftex`) — `brew install libtexprintf`
+  - **pylatexenc** (usa `latex2text`) — `pip install pylatexenc`
+
+  Mais detalhes na [documentação do render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim?tab=readme-ov-file#user-content-fnref-3-f67c77c602e1e31fcd6a932611f5402c).
+
+- **Erro no tree-sitter-cli (`--no-binding` não suportado)** → A versão 0.26+ do `tree-sitter-cli` removeu o parâmetro `--no-binding`, quebrando a instalação de alguns parsers (ex: `latex`). Use a versão 0.25.10:
+  ```bash
+  # Via npm
+  npm install -g tree-sitter-cli@0.25.10
+
+  # Via Homebrew
+  brew install tree-sitter@0.22
+  brew link --force tree-sitter@0.22
+  ```
 
 ---
 
