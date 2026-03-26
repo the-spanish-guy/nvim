@@ -10,6 +10,10 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
+      -- Inlined with 'image' elements.
+      image = "󰥶 ",
+      -- Check custom for 'image' elements.
+      image_custom = true,
       latex = {
         -- Turn on / off latex rendering.
         enabled = true,
