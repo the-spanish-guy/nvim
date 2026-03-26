@@ -127,10 +127,28 @@ keymap("x", "<A-k>", ":m-2<CR>gv=gv")
 
 --[[ PLUGINS ]]
 -- Seletor de tema
-keymap("n", "<leader>th", "<cmd>Themery<cr>", "Selecionar tema")
-keymap("n", "<leader>tT", function()
-  require("telescope.builtin").colorscheme({ enable_preview = true })
-end, "Temas (telescope)")
+keymap("n", "<leader>th", function()
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+  require("telescope.builtin").colorscheme({
+    enable_preview = true,
+    attach_mappings = function(prompt_bufnr)
+      actions.select_default:replace(function()
+        local cs = action_state.get_selected_entry().value
+        actions.close(prompt_bufnr)
+        vim.cmd.colorscheme(cs)
+        vim.fn.writefile({
+          "-- Themery block",
+          "-- This block will be replaced by Themery.",
+          ('vim.cmd("colorscheme ' .. cs .. '")'),
+          "-- end themery block",
+          "",
+        }, vim.fn.stdpath("config") .. "/lua/theme.lua")
+      end)
+      return true
+    end,
+  })
+end, "Selecionar tema")
 
 -- Seletor de tipo de arquivo
 keymap("n", "<leader>ft", function()
