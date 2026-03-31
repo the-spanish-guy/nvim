@@ -34,6 +34,7 @@ return {
     Unit = "",
     Value = "",
     Variable = "",
+    PuzzlePiece = ""
   },
   git = {
     LineAdded = "",

@@ -1,3 +1,12 @@
+local icons = require("utils.icons").kind
+local base_sources = { "lsp", "path", "snippets", "buffer" }
+
+local function sources_with(extra)
+  local t = vim.deepcopy(base_sources)
+  table.insert(t, 2, extra) -- posição 2: logo após o LSP
+  return t
+end
+
 return {
   "saghen/blink.cmp",
   dependencies = {
@@ -21,6 +30,9 @@ return {
     },
     appearance = {
       nerd_font_variant = "mono",
+      kind_icons = vim.tbl_extend("force", icons, {
+        Snippet = icons.PuzzlePiece,
+      }),
     },
     snippets = {
       preset = "default",
@@ -28,12 +40,12 @@ return {
     sources = {
       default = { "lsp", "path", "snippets", "buffer", "calc" },
       per_filetype = {
-        sql = { "lsp", "path", "snippets", "buffer", "sql" },
-        mysql = { "lsp", "path", "snippets", "buffer", "sql" },
-        plsql = { "lsp", "path", "snippets", "buffer", "sql" },
-        tex = { "lsp", "path", "snippets", "buffer", "latex_symbols" },
-        latex = { "lsp", "path", "snippets", "buffer", "latex_symbols" },
-        plaintex = { "lsp", "path", "snippets", "buffer", "latex_symbols" },
+        sql      = sources_with("sql"),
+        mysql    = sources_with("sql"),
+        plsql    = sources_with("sql"),
+        tex      = sources_with("latex_symbols"),
+        latex    = sources_with("latex_symbols"),
+        plaintex = sources_with("latex_symbols"),
       },
       providers = {
         -- Para remover sugestões do buffer, delete "buffer" em `default` acima
