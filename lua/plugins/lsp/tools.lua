@@ -1,6 +1,7 @@
 return {
   formatters = {
     stylua = { filetypes = { "lua" } },
+    sql_formatter = { filetypes = { "sql", "mysql", "plsql" }, mason_name = "sql-formatter" },
     gofumpt = { filetypes = { "go" } },
     yamlfmt = { filetypes = { "yaml" } },
     prettier = {

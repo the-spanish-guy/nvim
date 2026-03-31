@@ -40,8 +40,8 @@ return {
 
     local tools = require("plugins.lsp.tools")
     local tools_to_install = {}
-    for name, _ in pairs(tools.formatters) do
-      table.insert(tools_to_install, name)
+    for name, tool in pairs(tools.formatters) do
+      table.insert(tools_to_install, tool.mason_name or name)
     end
     for name, _ in pairs(tools.linters) do
       table.insert(tools_to_install, name)
