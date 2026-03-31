@@ -36,6 +36,11 @@ return {
         plaintex = { "lsp", "path", "snippets", "buffer", "latex_symbols" },
       },
       providers = {
+        -- Para remover sugestões do buffer, delete "buffer" em `default` acima
+        buffer = {
+          score_offset = -5, -- empurra buffer abaixo do LSP na lista
+          min_keyword_length = 4, -- só sugere palavras com 4+ caracteres digitados
+        },
         calc = {
           name = "calc",
           module = "blink.compat.source",
