@@ -16,48 +16,20 @@ O lazy.nvim instala tudo na primeira abertura.
 
 ## Temas
 
-`<leader>th` abre um picker com preview ao vivo — navegue com `j/k` e veja o tema aplicado em tempo real. Confirmar com Enter salva a escolha entre sessões.
+`<leader>th` abre o picker do **themery** com preview ao vivo — navegue com `j/k` e veja o tema aplicado em tempo real. Confirmar com Enter salva a escolha entre sessões.
 
-Temas disponíveis: **vague**, **catppuccin**, **rosepine**, **tokyonight**, **kanagawa**.
+Temas disponíveis: **abyss** (void/dusk/dawn/ember), **catppuccin**, **rose-pine**, **tokyonight**, **kanagawa**, **vague**.
 
 ### Adicionando um novo tema
 
-Crie `lua/themes/nome.lua`:
+1. Instale o plugin em `lua/plugins/nome.lua`
+2. Adicione as entradas no picker em `lua/plugins/themery.lua`:
 
 ```lua
-local flavor = "variante-padrao"
-
-return {
-  name = "nome",
-  variants = { "a", "b" }, -- opcional
-  lualine = "nome-lualine",
-  colors = function()
-    local colors = require("tema.colors").setup({ style = flavor })
-    return { updates = colors.alguma_cor }
-  end,
-  setup = function()
-    require("tema").setup({ style = flavor })
-    vim.o.background = "dark"
-    vim.cmd.colorscheme("nome-" .. flavor)
-  end,
-}
+{ name = "Nome · Variante", colorscheme = "nome-variante" },
 ```
 
-E crie `lua/plugins/nome.lua`:
-
-```lua
-local theme = require("themes")
-return {
-  "owner/repo",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    if theme.name == "nome" then theme.setup() end
-  end,
-}
-```
-
-O picker detecta automaticamente.
+O themery salva a escolha automaticamente em `lua/theme.lua`.
 
 ## LSP
 
@@ -87,9 +59,11 @@ providers = {
   },
 }
 
--- 3. adicione ao filetype desejado
+-- 3. adicione ao filetype desejado usando o helper sources_with()
+-- isso insere o source na posição 2 (logo após o LSP)
+-- "nome" aqui é o nome do provider registrado acima, não o filetype
 per_filetype = {
-  python = { "lsp", "path", "snippets", "buffer", "nome" },
+  python = sources_with("nome"),
 }
 ```
 
