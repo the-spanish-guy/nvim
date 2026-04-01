@@ -1,4 +1,5 @@
 local icons = require("utils.icons").kind
+local hl = require("utils.hl")
 local base_sources = { "lsp", "path", "snippets", "buffer" }
 
 local function sources_with(extra)
@@ -6,6 +7,12 @@ local function sources_with(extra)
   table.insert(t, 2, extra) -- posição 2: logo após o LSP
   return t
 end
+
+-- aplica ao iniciar e ao trocar de tema
+hl.apply_blink_kind_highlights()
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = hl.apply_blink_kind_highlights,
+})
 
 return {
   "saghen/blink.cmp",
@@ -76,6 +83,21 @@ return {
       },
       menu = {
         border = "rounded",
+        draw = {
+          columns = {
+            { "kind_icon", gap = 1 },
+            { "label", "label_description", gap = 1 },
+            { "kind" },
+          },
+          components = {
+            kind_icon = {
+              text = function(ctx) return " " .. ctx.kind_icon .. " " end,
+              highlight = function(ctx)
+                return "BlinkCmpKindIcon" .. ctx.kind
+              end,
+            },
+          },
+        },
       },
     },
     signature = {
