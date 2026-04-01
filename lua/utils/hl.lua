@@ -68,7 +68,16 @@ local function apply_blink_kind_highlights()
   end
 end
 
+-- retorna o tema do lualine baseado no colorscheme ativo
+local function get_lualine_theme()
+  if vim.g.colors_name == "abyss" then
+    return require("abyss.integrations.lualine").get(vim.g.abyss_variant)
+  end
+  return "auto"
+end
+
 return {
   blend = blend,
   apply_blink_kind_highlights = apply_blink_kind_highlights,
+  get_lualine_theme = get_lualine_theme,
 }

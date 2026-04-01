@@ -5,9 +5,10 @@ return {
     local lazy_status = require("lazy.status")
     local icons = require("utils.icons")
 
-    require("lualine").setup({
-      options = {
-        theme =  "auto",
+    local function setup()
+      require("lualine").setup({
+        options = {
+          theme = require("utils.hl").get_lualine_theme(),
         icons_enabled = true,
         component_separators = { left = "", right = "" },
         section_separators = {
@@ -119,6 +120,10 @@ return {
         },
       },
       extensions = { "neo-tree" },
-    })
+      })
+    end
+
+    setup()
+    vim.api.nvim_create_autocmd("ColorScheme", { callback = setup })
   end,
 }
