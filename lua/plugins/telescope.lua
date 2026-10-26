@@ -1,7 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.6",
+    branch = "master", -- a tag 0.1.6 usa nvim-treesitter.parsers (removido na branch main)
     -- cmd = "Telescope", -- se a linha for descomentada o telescope nao funcionara ao startar o nvim
     dependencies = {
       "nvim-lua/plenary.nvim",
