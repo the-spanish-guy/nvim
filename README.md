@@ -18,7 +18,7 @@ O lazy.nvim instala tudo na primeira abertura.
 
 `<leader>th` abre o picker do **themery** com preview ao vivo — navegue com `j/k` e veja o tema aplicado em tempo real. Confirmar com Enter salva a escolha entre sessões.
 
-Temas disponíveis: **abyss** (void/dusk/dawn/ember), **catppuccin**, **rose-pine**, **tokyonight**, **kanagawa**, **vague**.
+Temas disponíveis: **catppuccin**, **rose-pine**, **tokyonight**, **kanagawa**, **vague**.
 
 ### Adicionando um novo tema
 

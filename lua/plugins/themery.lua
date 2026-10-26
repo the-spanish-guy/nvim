@@ -7,16 +7,6 @@ return {
       livePreview = true,
       themeConfigFile = vim.fn.stdpath("config") .. "/lua/theme.lua",
       themes = {
-        -- Abyss
-        { name = "Abyss · Void", colorscheme = "abyss-void" },
-        { name = "Abyss · Dusk", colorscheme = "abyss-dusk" },
-        {
-          name = "Abyss · Dawn",
-          colorscheme = "abyss-dawn",
-          before = [[ vim.o.background = "light" ]],
-          after = [[ vim.o.background = "dark" ]],
-        },
-        { name = "Abyss · Ember", colorscheme = "abyss-ember" },
         -- Catppuccin
         { name = "Catppuccin · Mocha", colorscheme = "catppuccin-mocha" },
         { name = "Catppuccin · Macchiato", colorscheme = "catppuccin-macchiato" },
