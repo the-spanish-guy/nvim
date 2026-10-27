@@ -32,6 +32,8 @@ return {
   },
   ts_ls = {},
   gopls = {},
+  cssls = {},
+  tailwindcss = {},
   yamlls = {
     cmd = { "yaml-language-server", "--stdio" },
     filetypes = { "yaml" },
