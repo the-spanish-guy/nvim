@@ -66,7 +66,7 @@ return {
       title = false,
       underline = true,
       virtual_text = true,
-      update_in_insert = true,
+      update_in_insert = false,
       severity_sort = true,
       float = {
         source = "always",
