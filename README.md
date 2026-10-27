@@ -136,6 +136,15 @@ Se o source faz sentido em qualquer arquivo, adicione em `sources.default` no lu
 - **Sem highlight** → `:TSInstall <linguagem>`
 - **Telescope lento** → confirma que `ripgrep` e `fd` estão no PATH
 - **Sem ícones** → Nerd Font não configurada no terminal
+- **`stylua .` não funciona no terminal** → O `stylua` que o Neovim usa vem do Mason e fica dentro da pasta do próprio editor, então o terminal não o enxerga. Dentro do Neovim isso não atrapalha: `<leader>gf` formata normalmente. Só se você quiser rodar `stylua .` direto no terminal (ou em um hook/CI), instale uma cópia no sistema:
+  ```bash
+  # Via mise
+  mise use -g stylua
+
+  # Via Homebrew
+  brew install stylua
+  ```
+  As duas cópias convivem sem problema: o Neovim continua usando a do Mason e o terminal passa a usar a que você instalou.
 - **Fórmulas LaTeX não renderizam (render-markdown)** → É necessário ter ao menos uma das seguintes dependências instaladas para converter strings LaTeX em unicode:
   - **libtexprintf** (usa `utftex`) — `brew install libtexprintf`
   - **pylatexenc** (usa `latex2text`) — `pip install pylatexenc`
