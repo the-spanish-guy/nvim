@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-vim.deprecate = function() end
+-- vim.deprecate = function() end
 
 require("settings")
 
