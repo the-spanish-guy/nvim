@@ -47,9 +47,16 @@ return {
       table.insert(tools_to_install, name)
     end
 
+    -- os servidores LSP também entram na lista para o auto_update cobri-los
+    -- o mason-tool-installer só atualiza o que está em ensure_installed
+    local lsp_to_package = require("mason-lspconfig.mappings").get_mason_map().lspconfig_to_package
+    for name, _ in pairs(require("plugins.lsp.servers")) do
+      table.insert(tools_to_install, lsp_to_package[name] or name)
+    end
+
     require("mason-tool-installer").setup({
       ensure_installed = tools_to_install,
-      auto_update = false,
+      auto_update = true,
       run_on_start = true,
     })
 
