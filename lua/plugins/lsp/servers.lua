@@ -11,16 +11,8 @@ return {
     settings = {
       Lua = {
         telemetry = { enable = false },
-        diagnostics = {
-          globals = { "vim" },
-        },
-        workspace = {
-          -- make language server aware of runtime files
-          library = {
-            "${3rd}/luv/library",
-            unpack(vim.api.nvim_get_runtime_file("", true)),
-          },
-        },
+        -- runtime e libraries dos plugins são carregados sob demanda pelo
+        -- lazydev.nvim (lua/plugins/lazydev.lua)
       },
     },
   },

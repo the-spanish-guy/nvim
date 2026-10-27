@@ -47,6 +47,7 @@ return {
     sources = {
       default = { "lsp", "path", "snippets", "buffer", "calc" },
       per_filetype = {
+        lua      = { "lazydev", "lsp", "path", "snippets", "buffer" },
         sql      = sources_with("sql"),
         mysql    = sources_with("sql"),
         plsql    = sources_with("sql"),
@@ -59,6 +60,11 @@ return {
         buffer = {
           score_offset = -5, -- empurra buffer abaixo do LSP na lista
           min_keyword_length = 4, -- só sugere palavras com 4+ caracteres digitados
+        },
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          score_offset = 100, -- completions de require/módulos acima do LSP
         },
         calc = {
           name = "calc",
