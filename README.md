@@ -151,15 +151,15 @@ Se o source faz sentido em qualquer arquivo, adicione em `sources.default` no lu
 
   Mais detalhes na [documentação do render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim?tab=readme-ov-file#user-content-fnref-3-f67c77c602e1e31fcd6a932611f5402c).
 
-- **Erro no tree-sitter-cli (`--no-binding` não suportado)** → A versão 0.26+ do `tree-sitter-cli` removeu o parâmetro `--no-binding`, quebrando a instalação de alguns parsers (ex: `latex`). Use a versão 0.25.10:
+- **Parser não instala (erro no `tree-sitter-cli`)** → O nvim-treesitter (branch `main`) compila os parsers localmente e precisa do `tree-sitter-cli` na versão **0.26.1 ou superior**, instalado pelo gerenciador de pacotes do sistema, **não pelo npm**. Versões anteriores não são suportadas por essa branch, e a cópia do npm fica presa à versão do Node ativa, o que pode deixar o comando quebrado quando o Node muda.
   ```bash
-  # Via npm
-  npm install -g tree-sitter-cli@0.25.10
-
   # Via Homebrew
-  brew install tree-sitter@0.22
-  brew link --force tree-sitter@0.22
+  brew install tree-sitter-cli
+
+  # Se tiver uma cópia antiga pelo npm, remova para ela não esconder a do Homebrew
+  npm uninstall -g tree-sitter-cli
   ```
+  Para conferir qual está sendo usada: `which -a tree-sitter` e `tree-sitter --version`.
 
 ---
 
