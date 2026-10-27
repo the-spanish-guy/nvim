@@ -161,8 +161,8 @@ return {
           },
           file_browser = {
             theme = "ivy",
-            path = vim.loop.cwd(),
-            cwd = vim.loop.cwd(),
+            path = vim.uv.cwd(),
+            cwd = vim.uv.cwd(),
             cwd_to_path = false,
             grouped = false,
             files = true,
