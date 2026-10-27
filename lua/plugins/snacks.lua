@@ -8,19 +8,43 @@ local function make_sections()
     { pane = 2, padding = 2 },
     {
       pane = 2,
-      text = { { "🦋 No will to break", hl = "SnacksDashboardFooter", align = "center" } },
+      text = {
+        {
+          "🦋 No will to break",
+          hl = "SnacksDashboardFooter",
+          align = "center",
+        },
+      },
     },
     {
       pane = 2,
-      text = { { "🗡️  No mind to think", hl = "SnacksDashboardFooter", align = "center" } },
+      text = {
+        {
+          "🗡️  No mind to think",
+          hl = "SnacksDashboardFooter",
+          align = "center",
+        },
+      },
     },
     {
       pane = 2,
-      text = { { "🎭 Born of God and Void", hl = "SnacksDashboardFooter", align = "center" } },
+      text = {
+        {
+          "🎭 Born of God and Void",
+          hl = "SnacksDashboardFooter",
+          align = "center",
+        },
+      },
     },
     {
       pane = 2,
-      text = { { "🪲 No voice to cry suffering", hl = "SnacksDashboardFooter", align = "center" } },
+      text = {
+        {
+          "🪲 No voice to cry suffering",
+          hl = "SnacksDashboardFooter",
+          align = "center",
+        },
+      },
     },
     { pane = 2, padding = 1 },
   }
@@ -31,7 +55,9 @@ local function make_sections()
     local prefix = i == 1 and "> " or "  "
     table.insert(sections, {
       pane = 2,
-      text = { { prefix .. line, hl = "SnacksDashboardDesc", align = "center" } },
+      text = {
+        { prefix .. line, hl = "SnacksDashboardDesc", align = "center" },
+      },
     })
   end
 
@@ -75,10 +101,7 @@ return {
       width = 60,
       pane_gap = 8,
       preset = {
-        header = table.concat(
-          require("utils.headers").headers.zote_100,
-          "\n"
-        ),
+        header = table.concat(require("utils.headers").headers.zote_100, "\n"),
         keys = {
           {
             icon = icons.ui.NewFile,
@@ -97,9 +120,9 @@ return {
             key = "r",
             desc = "Recent Files",
             -- action = ":Telescope oldfiles", -- oldfiles lista os últimos arquivos GLOBAL
-            action = function ()
+            action = function()
               require("telescope.builtin").oldfiles({ cwd_only = true })
-            end
+            end,
           },
           {
             icon = icons.ui.Gear,
