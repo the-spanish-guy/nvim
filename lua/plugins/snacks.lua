@@ -50,6 +50,8 @@ return {
     lazygit = { enabled = true },
     image = {
       enabled = true,
+      -- fórmulas ficam com o render-markdown (utftex); evita sobreposição
+      math = { enabled = false },
       formats = {
         "png",
         "jpg",
