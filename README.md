@@ -16,20 +16,13 @@ O lazy.nvim instala tudo na primeira abertura.
 
 ## Temas
 
-`<leader>th` abre o picker do **themery** com preview ao vivo — navegue com `j/k` e veja o tema aplicado em tempo real. Confirmar com Enter salva a escolha entre sessões.
+`<leader>th` abre um picker do Telescope com preview ao vivo — navegue e veja o tema aplicado em tempo real. Confirmar com Enter salva a escolha em `lua/theme.lua`, carregado no boot pelo `init.lua`.
 
 Temas disponíveis: **catppuccin**, **rose-pine**, **tokyonight**, **kanagawa**, **vague**.
 
 ### Adicionando um novo tema
 
-1. Instale o plugin em `lua/plugins/nome.lua`
-2. Adicione as entradas no picker em `lua/plugins/themery.lua`:
-
-```lua
-{ name = "Nome · Variante", colorscheme = "nome-variante" },
-```
-
-O themery salva a escolha automaticamente em `lua/theme.lua`.
+Instale o plugin em `lua/plugins/nome.lua`. O picker lista automaticamente todos os colorschemes instalados.
 
 ## LSP
 

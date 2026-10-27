@@ -1,5 +1,3 @@
--- Themery block
--- This block will be replaced by Themery.
+-- Tema ativo, gravado por <leader>th (lua/settings/mapkeys.lua)
 vim.cmd("colorscheme rose-pine-main")
--- end themery block
 

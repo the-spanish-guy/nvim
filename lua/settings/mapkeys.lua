@@ -138,10 +138,8 @@ keymap("n", "<leader>th", function()
         actions.close(prompt_bufnr)
         vim.cmd.colorscheme(cs)
         vim.fn.writefile({
-          "-- Themery block",
-          "-- This block will be replaced by Themery.",
+          "-- Tema ativo, gravado por <leader>th (lua/settings/mapkeys.lua)",
           ('vim.cmd("colorscheme ' .. cs .. '")'),
-          "-- end themery block",
           "",
         }, vim.fn.stdpath("config") .. "/lua/theme.lua")
       end)
