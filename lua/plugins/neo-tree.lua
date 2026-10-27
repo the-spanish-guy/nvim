@@ -52,6 +52,11 @@ return {
       window = {
         position = "right",
         mappings = {
+          -- <C-b> é o toggle global; dentro da árvore ele rolava o preview
+          ["<C-b>"] = "close_window",
+          -- rola o preview, como no Telescope (sem preview, rola a árvore)
+          ["<C-d>"] = { "scroll_preview", config = { direction = -10 } },
+          ["<C-u>"] = { "scroll_preview", config = { direction = 10 } },
           ["P"] = {
             "toggle_preview",
             config = { use_float = true, use_image_nvim = true },
