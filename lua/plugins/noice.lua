@@ -30,6 +30,8 @@ return -- lazy.nvim
       },
       -- hover = { enabled = false },
       signature = { enabled = false },
+      -- o progresso do LSP é exibido pelo fidget
+      progress = { enabled = false },
     },
     -- you can enable a preset for easier configuration
     presets = {
