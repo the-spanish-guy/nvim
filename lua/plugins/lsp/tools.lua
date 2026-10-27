@@ -29,6 +29,5 @@ return {
       },
     },
     yamllint = { filetypes = { "yaml" } },
-    biome = { filetypes = {} }, -- roda como LSP, listado apenas para o Mason instalar
   },
 }

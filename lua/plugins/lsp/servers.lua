@@ -40,8 +40,11 @@ return {
     filetypes = { "astro" },
   },
   biome = {
-    root_dir = function(bufnr)
-      return vim.fs.root(bufnr, { "biome.json", "biome.jsonc" })
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { "biome.json", "biome.jsonc" })
+      if root then
+        on_dir(root)
+      end
     end,
   },
 }
