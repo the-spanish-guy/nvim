@@ -48,6 +48,27 @@ return {
     bufdelete = { enabled = true },
     words = { enabled = true },
     lazygit = { enabled = true },
+    image = {
+      enabled = true,
+      formats = {
+        "png",
+        "jpg",
+        "jpeg",
+        "gif",
+        "bmp",
+        "webp",
+        "tiff",
+        "heic",
+        "avif",
+        "mp4",
+        "mov",
+        "avi",
+        "mkv",
+        "webm",
+        "icns",
+        -- "pdf" -- comentado porque só é renderizado a primeira página
+      },
+    },
     dashboard = {
       width = 60,
       pane_gap = 8,
