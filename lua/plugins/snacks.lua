@@ -96,7 +96,10 @@ return {
             icon = icons.ui.Files,
             key = "r",
             desc = "Recent Files",
-            action = ":Telescope oldfiles",
+            -- action = ":Telescope oldfiles", -- oldfiles lista os últimos arquivos GLOBAL
+            action = function ()
+              require("telescope.builtin").oldfiles({ cwd_only = true })
+            end
           },
           {
             icon = icons.ui.Gear,
