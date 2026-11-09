@@ -74,6 +74,7 @@ return {
     bufdelete = { enabled = true },
     words = { enabled = true },
     lazygit = { enabled = true },
+    notifier = { enabled = true, timeout = 3000 },
     image = {
       enabled = true,
       -- fórmulas ficam com o render-markdown (utftex); evita sobreposição
@@ -155,6 +156,13 @@ return {
         Snacks.bufdelete()
       end,
       desc = "Delete Buffer",
+    },
+    {
+      "<leader>nh",
+      function()
+        Snacks.notifier.show_history()
+      end,
+      desc = "Notification History",
     },
   },
 }

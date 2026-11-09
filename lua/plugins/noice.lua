@@ -5,18 +5,6 @@ return -- lazy.nvim
   dependencies = {
     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     "MunifTanjim/nui.nvim",
-    {
-      "rcarriga/nvim-notify",
-      config = function()
-        local function update_bg()
-          local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = "Normal", link = false })
-          local bg = ok and hl.bg and string.format("#%06x", hl.bg) or "#000000"
-          require("notify").setup({ background_colour = bg })
-        end
-        update_bg()
-        vim.api.nvim_create_autocmd("ColorScheme", { callback = update_bg })
-      end,
-    },
   },
   opts = {
     -- add any options here
