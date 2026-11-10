@@ -74,6 +74,12 @@ Definidas em `lua/settings/config.lua` (e `autocmds.lua`):
 - **`cursorline` só na janela ativa**: o destaque da linha acompanha o foco entre os splits.
 - **`iskeyword` com `-`**: o hífen conta como parte da palavra em qualquer arquivo, então `margin-left` é uma palavra só para `w`, `b`, `*` e `ciw`. Em código como `a-b` (sem espaços), a expressão inteira vira uma palavra; para desfazer, remova a linha `vim.opt.iskeyword:append("-")` do `config.lua`.
 
+Do snacks.nvim (`lua/plugins/snacks.lua`):
+
+- **Realce de palavras (`words`)**: a referência do símbolo sob o cursor é realçada em todo o arquivo, e `]]` / `[[` pulam entre as ocorrências. Usa o LSP, então só funciona em arquivos com servidor conectado. O `]]`/`[[` sobrescreve os atalhos nativos de "seção", que quase não se usam.
+- **Guias de indentação (`indent`)**: linhas verticais finas mostrando a indentação e o bloco atual.
+- **Coluna de status (`statuscolumn`)**: reorganiza a faixa à esquerda do código em três partes: à esquerda do número ficam os diagnósticos do LSP e as marcas; no meio, o número da linha; à direita, o sinal do git (gitsigns). As setas de dobra só aparecem se o `foldcolumn` estiver diferente de `0`, e hoje está em `0`. Para desligar, troque `enabled = true` por `false` na linha correspondente.
+
 ## Atalhos
 
 ### Geral
@@ -115,6 +121,7 @@ O prefixo `s` ocupa o `s` nativo (substituir); use `cl` no lugar.
 | `<leader>gf` | Formatar |
 | `[d` / `]d` | Diagnóstico anterior / próximo |
 | `<leader>d` | Mostrar diagnóstico |
+| `]]` / `[[` | Próxima / anterior referência da palavra sob o cursor (precisa de LSP; aceita contagem, ex.: `2]]`) |
 
 ### Treesitter Textobjects
 | Atalho | Ação |

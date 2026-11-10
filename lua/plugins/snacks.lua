@@ -73,6 +73,8 @@ return {
     bigfile = { enabled = true },
     bufdelete = { enabled = true },
     words = { enabled = true },
+    indent = { enabled = true },
+    statuscolumn = { enabled = true },
     lazygit = { enabled = true },
     notifier = { enabled = true, timeout = 3000 },
     image = {
@@ -163,6 +165,20 @@ return {
         Snacks.notifier.show_history()
       end,
       desc = "Notification History",
+    },
+    {
+      "]]",
+      function()
+        Snacks.words.jump(vim.v.count1)
+      end,
+      desc = "Próxima referência da palavra",
+    },
+    {
+      "[[",
+      function()
+        Snacks.words.jump(-vim.v.count1)
+      end,
+      desc = "Referência anterior da palavra",
     },
   },
 }
