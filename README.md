@@ -162,6 +162,8 @@ O [`delta`](https://github.com/dandavison/delta) é opcional: com ele instalado 
 | `<C-j>` | Executar requisição HTTP (Kulala) |
 | `<leader>bd` | Fechar buffer sem fechar o split |
 
+Renomear ou mover um arquivo pelo Neo-tree avisa o LSP (via `snacks.rename`), que corrige os `import`s de quem o usa. Isso depende de o servidor suportar `workspace/willRenameFiles`: foi testado com o `ts_ls` (TypeScript/JavaScript); nos demais servidores o arquivo só é movido. Cada renomeação mostra o aviso `client.supports_method is deprecated`, vindo da versão atual do snacks com o Neovim 0.12; é inofensivo. Para renomear um **símbolo** (variável, função), use o `<F2>` (inc-rename).
+
 ## Troubleshooting
 
 - **LSP não conecta** → `:Mason` pra ver se o servidor está instalado, `:LspLog` pra ver erros

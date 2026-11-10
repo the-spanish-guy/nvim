@@ -15,8 +15,19 @@ return {
     },
   },
   config = function()
+    local events = require("neo-tree.events")
+    -- renomear/mover arquivo pela árvore avisa o LSP, que atualiza os imports
+    local function on_rename(data)
+      Snacks.rename.on_rename_file(data.source, data.destination)
+    end
+
     require("neo-tree").setup({
       close_if_last_window = true,
+
+      event_handlers = {
+        { event = events.FILE_MOVED, handler = on_rename },
+        { event = events.FILE_RENAMED, handler = on_rename },
+      },
 
       default_component_configs = {
         indent = {
