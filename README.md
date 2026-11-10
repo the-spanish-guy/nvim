@@ -71,13 +71,25 @@ Se o source faz sentido em qualquer arquivo, adicione em `sources.default` no lu
 | `<C-s>` | Salvar |
 | `<leader>x` | Fechar buffer |
 | `<S-h>` / `<S-l>` | Buffer anterior / próximo |
-| `<C-h/j/k/l>` | Navegar entre janelas |
+
+### Janelas
+| Atalho | Ação |
+|--------|------|
+| `ss` / `sv` | Dividir na horizontal / vertical |
+| `sh` `sj` `sk` `sl` | Navegar entre janelas |
+| `sq` | Fechar a janela (nunca sai do Neovim na última) |
+| `so` | Fechar as outras janelas |
+
+O prefixo `s` ocupa o `s` nativo (substituir); use `cl` no lugar.
 
 ### Edição
 | Atalho | Ação |
 |--------|------|
-| `<C-a>` | Selecionar tudo |
-| `<C-S-k>` | Deletar linha sem copiar |
+| `<C-a>` | Selecionar o arquivo todo (linha a linha, bom para copiar) |
+| `x` | Apagar caractere sem copiar |
+| `<leader>dd` | Apagar a linha sem copiar |
+| `<leader>p` | Colar o último yank, mesmo depois de apagar outra coisa (só o que foi copiado no Neovim) |
+| `<leader>o` / `<leader>O` | Nova linha abaixo / acima sem continuar o comentário |
 | `<A-j>` / `<A-k>` | Mover linha/seleção |
 | `<C-g>` | Ir para linha |
 
@@ -118,15 +130,16 @@ Se o source faz sentido em qualquer arquivo, adicione em `sources.default` no lu
 | Atalho | Ação |
 |--------|------|
 | `<leader>lg` | Lazygit |
-| `<leader>df` | Diff do arquivo |
-| `<leader>dfh` | Histórico do arquivo |
+| `<leader>df` | Diffview: diff do repositório |
+| `<leader>dfh` | Diffview: histórico do arquivo |
+| `<leader>db` | DiffBandit: arquivos alterados do repositório |
+| `<leader>dB` | DiffBandit: arquivo atual |
 | `<leader>gs` / `<leader>gr` / `<leader>gp` | Stage / reset / preview hunk |
 
 ### Misc
 | Atalho | Ação |
 |--------|------|
 | `<C-b>` | Neo-tree |
-| `<leader>sv` / `<leader>sh` | Split vertical / horizontal |
 | `<C-j>` | Executar requisição HTTP (Kulala) |
 | `<leader>bd` | Fechar buffer sem fechar o split |
 

@@ -18,7 +18,7 @@ yt, - copia do cursor até a próxima vírgula
 ]]
 autocmd("TextYankPost", {
   callback = function()
-    vim.highlight.on_yank({ timeout = 200 })
+    vim.hl.on_yank({ timeout = 200 })
   end,
 })
 

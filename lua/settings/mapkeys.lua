@@ -2,8 +2,7 @@ local keymap = require("utils.keymap")
 
 --[[ ATALHOS BÁSICOS DE EDIÇÃO ]]
 -- Selecionar tudo
-keymap("n", "<C-a>", "ggvG$", "Seleciona Todo o arquivo")
--- keymap("n", "<C-a>", "gg<S-v>G", "Seleciona Todo o arquivo")
+keymap("n", "<C-a>", "gg<S-v>G", "Seleciona Todo o arquivo")
 
 -- Salvar com Ctrl+S
 keymap("n", "<C-s>", ":w<CR>", "Salvar arquivo")
@@ -17,8 +16,16 @@ Deletar linha sem copiar (estilo VSCode)
 Dessa forma, a linha é deletada sem afetar o registro de cópia,
 exatamente como o atalho Ctrl+Shift+K do VSCode
 ]]
-keymap("n", "<C-S-k>", '"_dd', "Deletar linha sem copiar")
-keymap("n", "x", '"_x"', "Deleta caractere sem afetar o registro (clipboard)")
+keymap("n", "<leader>dd", '"_dd', "Deletar linha sem copiar")
+keymap("n", "x", '"_x', "Deleta caractere sem afetar o registro (clipboard)")
+
+-- Cola o último yank (registro 0), mesmo depois de apagar outra coisa.
+-- O registro 0 só guarda yanks feitos no Neovim, não o que veio de fora.
+keymap({ "n", "v" }, "<leader>p", '"0p', "Colar o último yank")
+
+-- Abre linha abaixo/acima sem continuar o comentário
+keymap("n", "<leader>o", "o<Esc>^Da", "Nova linha abaixo sem comentário")
+keymap("n", "<leader>O", "O<Esc>^Da", "Nova linha acima sem comentário")
 
 --[[ NAVEGAÇÃO ]]
 -- Ir para a linha
@@ -34,6 +41,18 @@ keymap("n", "<leader>x", ":bd<CR>", "Fechar buffer")
 -- Dividir janela
 keymap("n", "<leader>sv", ":vsplit<CR>", "Dividir verticalmente")
 keymap("n", "<leader>sh", ":split<CR>", "Dividir horizontalmente")
+
+-- Divisões e navegação entre janelas com o prefixo `s` (o `s` nativo, de
+-- substituir, fica indisponível; use `cl`)
+keymap("n", "ss", ":split<CR>", "Dividir horizontalmente")
+keymap("n", "sv", ":vsplit<CR>", "Dividir verticalmente")
+keymap("n", "sh", "<C-w>h", "Janela à esquerda")
+keymap("n", "sj", "<C-w>j", "Janela abaixo")
+keymap("n", "sk", "<C-w>k", "Janela acima")
+keymap("n", "sl", "<C-w>l", "Janela à direita")
+-- `:close` (e não `:q`) para nunca sair do Neovim ao fechar a última janela
+keymap("n", "sq", ":close<CR>", "Fechar janela")
+keymap("n", "so", ":only<CR>", "Fechar as outras janelas")
 
 -- Navegação entre janelas
 keymap("n", "<C-h>", "<C-w>h", "Janela à esquerda")
@@ -84,8 +103,12 @@ keymap("n", "<C-z>", ":Telescope file_browser path=%:p:h select_buffer=true<CR>"
 
 -- Ações e diagnósticos
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, "Ações de código")
-keymap("n", "[d", vim.diagnostic.goto_prev, "Diagnóstico anterior")
-keymap("n", "]d", vim.diagnostic.goto_next, "Próximo diagnóstico")
+keymap("n", "[d", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, "Diagnóstico anterior")
+keymap("n", "]d", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end, "Próximo diagnóstico")
 keymap("n", "<leader>d", vim.diagnostic.open_float, "Mostrar diagnóstico")
 keymap("n", "<leader>q", vim.diagnostic.setloclist, "Lista de diagnósticos")
 
