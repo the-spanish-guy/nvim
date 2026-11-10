@@ -39,7 +39,8 @@ return {
     end,
   },
   {
-    "sindrets/diffview.nvim",
+    "dlyongemallo/diffview-plus.nvim",
+    version = "*",
     cmd = {
       "DiffviewOpen",
       "DiffviewClose",
@@ -66,5 +67,27 @@ return {
         },
       })
     end,
+  },
+  {
+    "CoreyKaylor/diffbandit.nvim",
+    cmd = {
+      "DiffBandit",
+      "DiffBanditBuffers",
+      "DiffBanditFolderDiff",
+      "DiffBanditGit",
+      "DiffBanditGitCurrent",
+      "DiffBanditCommitPanel",
+      "DiffBanditGitMenu",
+      "DiffBanditGitLog",
+      "DiffBanditGitCommit",
+      "DiffBanditGitCompare",
+      "DiffBanditGitCheckout",
+      "DiffBanditMerge",
+    },
+    keys = {
+      { "<leader>db", "<cmd>DiffBanditGit<cr>", desc = "DiffBandit git" },
+      { "<leader>dB", "<cmd>DiffBanditGitCurrent<cr>", desc = "DiffBandit arquivo atual" },
+    },
+    opts = {},
   },
 }
