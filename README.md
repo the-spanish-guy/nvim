@@ -62,6 +62,18 @@ per_filetype = {
 
 Se o source faz sentido em qualquer arquivo, adicione em `sources.default` no lugar do `per_filetype`.
 
+## Opções do editor
+
+Definidas em `lua/settings/config.lua` (e `autocmds.lua`):
+
+- **Folds por Treesitter**: o Treesitter calcula as dobras a partir da estrutura do código, e todas começam abertas. `za` alterna a dobra sob o cursor, `zc` fecha, `zo` abre, `zM` fecha todas e `zR` abre todas.
+- **`winborder = "rounded"`**: borda arredondada padrão nas janelas flutuantes que não definem a própria.
+- **`laststatus = 3`**: uma única barra de status global, em vez de uma por janela.
+- **`ttimeoutlen = 0`**: o `Esc` sai do modo insert sem atraso. Em conexões lentas (SSH) isso pode confundir o `Esc` com sequências de teclas especiais.
+- **`fillchars` com `diff:╱`**: as linhas de preenchimento do diff nativo (`:diffthis`, Diffview) saem hachuradas.
+- **`cursorline` só na janela ativa**: o destaque da linha acompanha o foco entre os splits.
+- **`iskeyword` com `-`**: o hífen conta como parte da palavra em qualquer arquivo, então `margin-left` é uma palavra só para `w`, `b`, `*` e `ciw`. Em código como `a-b` (sem espaços), a expressão inteira vira uma palavra; para desfazer, remova a linha `vim.opt.iskeyword:append("-")` do `config.lua`.
+
 ## Atalhos
 
 ### Geral

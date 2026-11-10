@@ -146,4 +146,23 @@ Exemplo visual:
 autocmd("FileType", {
   pattern = "help",
   command = "wincmd L",
-}) 
+})
+
+--[[ Cursorline só na janela ativa
+O `cursorline` global (config.lua) fica ligado, mas cada janela que perde o foco
+desliga o destaque localmente e a que ganha o foco liga de volta.
+]]
+local cursorline_group = vim.api.nvim_create_augroup("CursorLine", { clear = true })
+autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+  group = cursorline_group,
+  callback = function()
+    vim.opt_local.cursorline = true
+  end,
+})
+autocmd("WinLeave", {
+  group = cursorline_group,
+  callback = function()
+    vim.opt_local.cursorline = false
+  end,
+})
+ 

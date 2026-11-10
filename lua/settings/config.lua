@@ -55,3 +55,17 @@ vim.opt.splitkeep = "cursor"   -- Mantém o cursor na mesma posição visual ao 
 -- mostrando TODOS os arquivos que estão sofrendo a alteração
 --]]
 vim.opt.inccommand = "split"   -- Mostra prévia incremental de comandos em janela separada
+
+-- Folds calculados pelo Treesitter (za alterna, zc fecha, zo abre, zM fecha
+-- todos, zR abre todos). foldlevel=99 abre tudo ao abrir o arquivo
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+
+-- Borda padrão das janelas flutuantes que não definem a própria
+vim.opt.winborder = "rounded"
+
+vim.opt.laststatus = 3         -- Uma única barra de status global
+vim.opt.ttimeoutlen = 0        -- Esc sai do modo insert sem atraso
+vim.opt.iskeyword:append("-")  -- O hífen conta como parte da palavra (margin-left é uma palavra só)
+vim.opt.fillchars:append({ diff = "╱" }) -- Preenchimento do diff nativo (hachurado)
