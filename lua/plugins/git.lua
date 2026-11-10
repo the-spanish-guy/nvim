@@ -34,6 +34,13 @@ return {
           map({ "n", "v" }, "<leader>gr", gs.reset_hunk, "Reset hunk")
           map("n", "<leader>gu", gs.undo_stage_hunk, "Undo stage hunk")
           map("n", "<leader>gp", gs.preview_hunk, "Preview hunk")
+          map("n", "<leader>gb", function()
+            Snacks.picker.git_log_line()
+          end, "Histórico da linha (picker)")
+          map("n", "<leader>gl", function()
+            Snacks.git.blame_line()
+          end, "Blame da linha (float)")
+          map("n", "<leader>gB", gs.blame, "Blame do arquivo")
         end,
       })
     end,

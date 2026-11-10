@@ -135,6 +135,13 @@ O prefixo `s` ocupa o `s` nativo (substituir); use `cl` no lugar.
 | `<leader>db` | DiffBandit: arquivos alterados do repositório |
 | `<leader>dB` | DiffBandit: arquivo atual |
 | `<leader>gs` / `<leader>gr` / `<leader>gp` | Stage / reset / preview hunk |
+| `<leader>gb` | Histórico da linha atual (picker do snacks, com preview do diff de cada commit) |
+| `<leader>gl` | Blame da linha atual (float do snacks com `git log -L`) |
+| `<leader>gB` | Blame do arquivo inteiro (coluna lateral do gitsigns) |
+
+Os atalhos de hunk e de blame só existem em arquivos rastreados pelo git. O float do `<leader>gl` termina com `[Process exited 0]`, que é a mensagem padrão do Neovim para buffers de terminal e não indica erro.
+
+O [`delta`](https://github.com/dandavison/delta) é opcional: com ele instalado (`brew install git-delta`) e configurado como `core.pager` no `~/.gitconfig`, o float do `<leader>gl` e o `git diff`/`git log` do terminal saem coloridos, com realce de sintaxe. O Diffview, o DiffBandit e o gitsigns usam o diff nativo do Neovim e não dependem dele.
 
 ### Misc
 | Atalho | Ação |
