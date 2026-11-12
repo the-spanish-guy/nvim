@@ -97,6 +97,8 @@ Do snacks.nvim (`lua/plugins/snacks.lua`):
 | `sh` `sj` `sk` `sl` | Navegar entre janelas |
 | `sq` | Fechar a janela (nunca sai do Neovim na última) |
 | `so` | Fechar as outras janelas |
+| `<leader>H` / `<leader>L` | Diminuir / aumentar a largura da janela |
+| `<leader>K` / `<leader>J` | Aumentar / diminuir a altura da janela |
 
 O prefixo `s` ocupa o `s` nativo (substituir); use `cl` no lugar.
 

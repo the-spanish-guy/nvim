@@ -54,12 +54,6 @@ keymap("n", "sl", "<C-w>l", "Janela à direita")
 keymap("n", "sq", ":close<CR>", "Fechar janela")
 keymap("n", "so", ":only<CR>", "Fechar as outras janelas")
 
--- Navegação entre janelas
-keymap("n", "<C-h>", "<C-w>h", "Janela à esquerda")
-keymap("n", "<C-j>", "<C-w>j", "Janela abaixo")
-keymap("n", "<C-k>", "<C-w>k", "Janela acima")
-keymap("n", "<C-l>", "<C-w>l", "Janela à direita")
-
 --[[
 ┌─────────────┬─────────────┐
 │   Janela 1  │   Janela 2  │
@@ -68,10 +62,10 @@ keymap("n", "<C-l>", "<C-w>l", "Janela à direita")
 └─────────────┴─────────────┘
 -- Redimensionando janelas
 ]]--
-keymap("n", "<C-H>", "<C-w><", "(na Janela 1) - diminui largura da Janela 1, Janela 2 fica maior")
-keymap("n", "<C-K>", "<C-w>+", "aumenta altura da janela atual")
-keymap("n", "<C-J>", "<C-w>-", "diminui altura da janela atual")
-keymap("n", "<C-L>", "<C-w>>", "(na Janela 1) - aumenta largura da Janela 1, Janela 2 fica menor")
+keymap("n", "<leader>H", "<C-w><", "(na Janela 1) - diminui largura da Janela 1, Janela 2 fica maior")
+keymap("n", "<leader>K", "<C-w>+", "aumenta altura da janela atual")
+keymap("n", "<leader>J", "<C-w>-", "diminui altura da janela atual")
+keymap("n", "<leader>L", "<C-w>>", "(na Janela 1) - aumenta largura da Janela 1, Janela 2 fica menor")
 
 --[[ LSP E CÓDIGO ]]
 -- Renomeação e Referências
