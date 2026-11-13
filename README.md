@@ -118,7 +118,7 @@ Do `nvim-highlight-colors` (`lua/plugins/highlight-colors.lua`):
 | `<leader>H` / `<leader>L` | Diminuir / aumentar a largura da janela |
 | `<leader>K` / `<leader>J` | Aumentar / diminuir a altura da janela |
 
-O prefixo `s` ocupa o `s` nativo (substituir); use `cl` no lugar.
+O prefixo `s` ocupa o `s` nativo (substituir); use `cl` no lugar. `<leader>sv` e `<leader>sh` (divisões antigas) ainda existem, mas são redundantes com `sv`/`ss`.
 
 ### Edição
 | Atalho | Ação |
@@ -156,6 +156,8 @@ Buffers sem nome não têm caminho, então nada é copiado e aparece um aviso.
 | `<leader>gf` | Formatar |
 | `[d` / `]d` | Diagnóstico anterior / próximo |
 | `<leader>d` | Mostrar diagnóstico |
+| `<leader>q` | Lista de diagnósticos (location list) |
+| `<leader>wa` / `<leader>wr` / `<leader>wl` | Adicionar / remover / listar pastas do workspace |
 | `]]` / `[[` | Próxima / anterior referência da palavra sob o cursor (precisa de LSP; aceita contagem, ex.: `2]]`) |
 
 ### Treesitter Textobjects
@@ -177,6 +179,8 @@ Buffers sem nome não têm caminho, então nada é copiado e aparece um aviso.
 | `<leader>fg` | Grep |
 | `<leader>fb` | Buffers abertos |
 | `<leader>fs` | Palavra sob cursor |
+| `<leader>fh` | Ajuda (help tags) |
+| `<leader>fr` | Retomar a última busca |
 | `<leader>th` | Seletor de temas |
 | `<leader>ft` | Seletor de filetype |
 
@@ -189,7 +193,7 @@ Buffers sem nome não têm caminho, então nada é copiado e aparece um aviso.
 | `<leader>db` | DiffBandit: arquivos alterados do repositório |
 | `<leader>dB` | DiffBandit: arquivo atual |
 | `]c` / `[c` | Próxima / anterior mudança **dentro do arquivo**, em janelas de diff (`:diffthis`, `:vert diffsplit`, Diffview, DiffBandit) |
-| `<leader>gs` / `<leader>gr` / `<leader>gp` | Stage / reset / preview hunk |
+| `<leader>gs` / `<leader>gr` / `<leader>gp` / `<leader>gu` | Stage / reset / preview / desfazer stage do hunk |
 | `<leader>gb` | Histórico da linha atual (picker do snacks, com preview do diff de cada commit) |
 | `<leader>gl` | Blame da linha atual (float do snacks com `git log -L`) |
 | `<leader>gB` | Blame do arquivo inteiro (coluna lateral do gitsigns) |
@@ -204,7 +208,9 @@ O [`delta`](https://github.com/dandavison/delta) é opcional: com ele instalado 
 | Atalho | Ação |
 |--------|------|
 | `<C-b>` | Neo-tree |
-| `<C-j>` | Executar requisição HTTP (Kulala) |
+| `<C-j>` | Executar requisição HTTP (Kulala), em qualquer buffer |
+| `<leader>Rs` / `<leader>Ra` / `<leader>Rb` | Kulala: enviar requisição / enviar todas / abrir scratchpad (arquivos `.http`) |
+| `<leader>nh` | Histórico de notificações |
 | `<leader>bd` | Fechar buffer sem fechar o split |
 
 Renomear ou mover um arquivo pelo Neo-tree avisa o LSP (via `snacks.rename`), que corrige os `import`s de quem o usa. Isso depende de o servidor suportar `workspace/willRenameFiles`: foi testado com o `ts_ls` (TypeScript/JavaScript); nos demais servidores o arquivo só é movido. Cada renomeação mostra o aviso `client.supports_method is deprecated`, vindo da versão atual do snacks com o Neovim 0.12; é inofensivo. Para renomear um **símbolo** (variável, função), use o `<F2>` (inc-rename).
@@ -227,7 +233,7 @@ O `<leader>cR` faz o mesmo para o arquivo aberto, sem abrir a árvore: o prompt 
   ```
   As duas cópias convivem sem problema: o Neovim continua usando a do Mason e o terminal passa a usar a que você instalou.
 - **Fórmulas LaTeX não renderizam (render-markdown)** → É necessário ter ao menos uma das seguintes dependências instaladas para converter strings LaTeX em unicode:
-  - **libtexprintf** (usa `utftex`) — `brew install libtexprintf`
+  - **utftex** — `brew install utftex`
   - **pylatexenc** (usa `latex2text`) — `pip install pylatexenc`
 
   Mais detalhes na [documentação do render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim?tab=readme-ov-file#user-content-fnref-3-f67c77c602e1e31fcd6a932611f5402c).
