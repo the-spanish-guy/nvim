@@ -107,13 +107,15 @@ return {
 
     -- Move
     vim.keymap.set("n", "]f", function() move.goto_next_start("@function.outer", "textobjects") end)
-    vim.keymap.set("n", "]c", function() move.goto_next_start("@class.outer", "textobjects") end)
+    -- Classes em `]k`/`[k` (e `]K`/`[K`): `]c`/`[c` ficam livres para o salto
+    -- entre mudanças do diff nativo e do Diffview
+    vim.keymap.set("n", "]k", function() move.goto_next_start("@class.outer", "textobjects") end)
     vim.keymap.set("n", "]F", function() move.goto_next_end("@function.outer", "textobjects") end)
-    vim.keymap.set("n", "]C", function() move.goto_next_end("@class.outer", "textobjects") end)
+    vim.keymap.set("n", "]K", function() move.goto_next_end("@class.outer", "textobjects") end)
     vim.keymap.set("n", "[f", function() move.goto_previous_start("@function.outer", "textobjects") end)
-    vim.keymap.set("n", "[c", function() move.goto_previous_start("@class.outer", "textobjects") end)
+    vim.keymap.set("n", "[k", function() move.goto_previous_start("@class.outer", "textobjects") end)
     vim.keymap.set("n", "[F", function() move.goto_previous_end("@function.outer", "textobjects") end)
-    vim.keymap.set("n", "[C", function() move.goto_previous_end("@class.outer", "textobjects") end)
+    vim.keymap.set("n", "[K", function() move.goto_previous_end("@class.outer", "textobjects") end)
 
     -- Swap
     vim.keymap.set("n", "<leader>sa", function()

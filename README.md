@@ -147,8 +147,8 @@ Buffers sem nome não têm caminho, então nada é copiado e aparece um aviso.
 | `vaa` / `via` | Selecionar argumento outer / inner |
 | `]f` / `[f` | Próxima / anterior função (início) |
 | `]F` / `[F` | Próxima / anterior função (fim) |
-| `]c` / `[c` | Próxima / anterior classe (início) |
-| `]C` / `[C` | Próxima / anterior classe (fim) |
+| `]k` / `[k` | Próxima / anterior classe (início) |
+| `]K` / `[K` | Próxima / anterior classe (fim) |
 | `<leader>sa` / `<leader>sA` | Swap argumento com próximo / anterior |
 
 ### Telescope
@@ -169,10 +169,13 @@ Buffers sem nome não têm caminho, então nada é copiado e aparece um aviso.
 | `<leader>dfh` | Diffview: histórico do arquivo |
 | `<leader>db` | DiffBandit: arquivos alterados do repositório |
 | `<leader>dB` | DiffBandit: arquivo atual |
+| `]c` / `[c` | Próxima / anterior mudança **dentro do arquivo**, em janelas de diff (`:diffthis`, `:vert diffsplit`, Diffview, DiffBandit) |
 | `<leader>gs` / `<leader>gr` / `<leader>gp` | Stage / reset / preview hunk |
 | `<leader>gb` | Histórico da linha atual (picker do snacks, com preview do diff de cada commit) |
 | `<leader>gl` | Blame da linha atual (float do snacks com `git log -L`) |
 | `<leader>gB` | Blame do arquivo inteiro (coluna lateral do gitsigns) |
+
+O `]c`/`[c` é o atalho nativo do Neovim: só funciona em janelas em modo diff e não troca de arquivo (para isso, use os atalhos do painel do Diffview ou do DiffBandit). Fora de um diff, não faz nada. As classes do Treesitter ficam em `]k`/`[k` justamente para não tomar essas teclas.
 
 Os atalhos de hunk e de blame só existem em arquivos rastreados pelo git. O float do `<leader>gl` termina com `[Process exited 0]`, que é a mensagem padrão do Neovim para buffers de terminal e não indica erro.
 
