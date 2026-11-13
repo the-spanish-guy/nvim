@@ -4,6 +4,10 @@ local keymap = require("utils.keymap")
 -- Selecionar tudo
 keymap("n", "<C-a>", "gg<S-v>G", "Seleciona Todo o arquivo")
 
+-- Incrementar/decrementar número.
+keymap({ "n", "x" }, "+", "<C-a>", "Incrementar número")
+keymap({ "n", "x" }, "-", "<C-x>", "Decrementar número")
+
 -- Salvar com Ctrl+S
 keymap("n", "<C-s>", ":w<CR>", "Salvar arquivo")
 keymap("i", "<C-s>", "<Esc>:w<CR>a", "Salvar arquivo")
