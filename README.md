@@ -110,8 +110,21 @@ O prefixo `s` ocupa o `s` nativo (substituir); use `cl` no lugar.
 | `<leader>dd` | Apagar a linha sem copiar |
 | `<leader>p` | Colar o último yank, mesmo depois de apagar outra coisa (só o que foi copiado no Neovim) |
 | `<leader>o` / `<leader>O` | Nova linha abaixo / acima sem continuar o comentário |
+| `+` / `-` | Incrementar / decrementar o número sob o cursor (aceita contagem, ex.: `5+`; no visual, vale por linha). Substituem os movimentos nativos de linha seguinte/anterior |
 | `<A-j>` / `<A-k>` | Mover linha/seleção |
 | `<C-g>` | Ir para linha |
+
+### Contexto para agentes
+Copiam texto para o clipboard do sistema, para colar em um agente (ou em qualquer lugar). Não precisam de agente integrado ao Neovim.
+
+| Atalho | Ação |
+|--------|------|
+| `<leader>yf` | Copiar o caminho **relativo** ao cwd com a linha (`src/app.ts#L42`); no visual, o intervalo (`#L10-L20`) |
+| `<leader>yp` | Copiar o caminho **absoluto** com a linha |
+| `<leader>cc` (visual) | Copiar a seleção como bloco Markdown: ` ```ts filename="src/app.ts" line=10 ` (caminho relativo à raiz do git) |
+| `ZR` | Reiniciar o Neovim (`:restart`); recusa se houver buffer com alterações não salvas |
+
+Buffers sem nome não têm caminho, então nada é copiado e aparece um aviso.
 
 ### LSP & Código
 | Atalho | Ação |
@@ -120,6 +133,7 @@ O prefixo `s` ocupa o `s` nativo (substituir); use `cl` no lugar.
 | `K` | Documentação |
 | `<F2>` | Renomear símbolo |
 | `<leader>ca` | Code actions |
+| `<leader>cR` | Renomear ou mover o arquivo atual (pede o novo caminho, relativo ao cwd) |
 | `<leader>gf` | Formatar |
 | `[d` / `]d` | Diagnóstico anterior / próximo |
 | `<leader>d` | Mostrar diagnóstico |
@@ -172,6 +186,8 @@ O [`delta`](https://github.com/dandavison/delta) é opcional: com ele instalado 
 | `<leader>bd` | Fechar buffer sem fechar o split |
 
 Renomear ou mover um arquivo pelo Neo-tree avisa o LSP (via `snacks.rename`), que corrige os `import`s de quem o usa. Isso depende de o servidor suportar `workspace/willRenameFiles`: foi testado com o `ts_ls` (TypeScript/JavaScript); nos demais servidores o arquivo só é movido. Cada renomeação mostra o aviso `client.supports_method is deprecated`, vindo da versão atual do snacks com o Neovim 0.12; é inofensivo. Para renomear um **símbolo** (variável, função), use o `<F2>` (inc-rename).
+
+O `<leader>cR` faz o mesmo para o arquivo aberto, sem abrir a árvore: o prompt vem preenchido com o caminho atual, e editar a pasta **move** o arquivo (pastas novas são criadas; a antiga, se ficar vazia, não é apagada). Salve antes de renomear, porque o buffer antigo é fechado sem perguntar. Se o destino já existir, ele é **sobrescrito** sem aviso. O git enxerga a operação como apagar e criar, e só reconhece o rename depois do `git add`.
 
 ## Troubleshooting
 
