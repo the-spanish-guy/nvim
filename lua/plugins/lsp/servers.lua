@@ -11,6 +11,12 @@ return {
     settings = {
       Lua = {
         telemetry = { enable = false },
+        diagnostics = {
+          -- variáveis iniciadas por `_` são descartes intencionais
+          unusedLocalExclude = { "_*" },
+          -- espaços no fim já são removidos pelo autocmd em autocmds.lua
+          disable = { "trailing-space", "incomplete-signature-doc" },
+        },
         -- runtime e libraries dos plugins são carregados sob demanda pelo
         -- lazydev.nvim (lua/plugins/lazydev.lua)
       },
