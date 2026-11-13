@@ -14,6 +14,16 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   callback = hl.apply_blink_kind_highlights,
 })
 
+-- Ícone do menu para itens de cor (ex.: `azure` no CSS): o blink já define
+-- `ctx.kind_hl = HexColor<hex>` (só `fg`, a cor do item) quando o servidor
+-- manda o hex na documentação. Os demais itens seguem o grupo do kind.
+local function color_icon_highlight(ctx)
+  if ctx.kind_hl and ctx.kind_hl:find("^HexColor") then
+    return ctx.kind_hl
+  end
+  return "BlinkCmpKindIcon" .. ctx.kind
+end
+
 return {
   "saghen/blink.cmp",
   dependencies = {
@@ -98,9 +108,7 @@ return {
           components = {
             kind_icon = {
               text = function(ctx) return " " .. ctx.kind_icon .. " " end,
-              highlight = function(ctx)
-                return "BlinkCmpKindIcon" .. ctx.kind
-              end,
+              highlight = color_icon_highlight,
             },
           },
         },
