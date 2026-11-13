@@ -97,6 +97,9 @@ keymap("n", "<C-z>", ":Telescope file_browser path=%:p:h select_buffer=true<CR>"
 
 -- Ações e diagnósticos
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, "Ações de código")
+keymap("n", "<leader>cR", function()
+  Snacks.rename.rename_file()
+end, "Renomear arquivo atual")
 keymap("n", "[d", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, "Diagnóstico anterior")
