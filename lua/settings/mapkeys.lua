@@ -31,6 +31,21 @@ keymap({ "n", "v" }, "<leader>p", '"0p', "Colar o último yank")
 keymap("n", "<leader>o", "o<Esc>^Da", "Nova linha abaixo sem comentário")
 keymap("n", "<leader>O", "O<Esc>^Da", "Nova linha acima sem comentário")
 
+-- Contexto para agentes (tudo vai para o clipboard do sistema, registro `+`)
+-- No visual, `<leader>yf`/`<leader>yp` copiam o intervalo (`#L10-L20`)
+keymap({ "n", "x" }, "<leader>yf", function()
+  require("utils.editor").yank_relative_path_with_line()
+end, "Copiar caminho relativo com linha")
+keymap({ "n", "x" }, "<leader>yp", function()
+  require("utils.editor").yank_absolute_path_with_line()
+end, "Copiar caminho absoluto com linha")
+keymap("x", "<leader>cc", function()
+  require("utils.editor").copy_as_codeblock()
+end, "Copiar seleção como bloco de código")
+keymap("n", "ZR", function()
+  require("utils.editor").restart()
+end, "Reiniciar o Neovim (recusa com alterações não salvas)")
+
 --[[ NAVEGAÇÃO ]]
 -- Ir para a linha
 keymap("n", "<C-g>", ":", "Ir para a linha")
