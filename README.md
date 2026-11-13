@@ -30,6 +30,18 @@ Servidores gerenciados pelo Mason — para adicionar um novo, basta incluir em `
 
 Formatters e linters ficam centralizados em `lua/plugins/lsp/tools.lua`. Adicionar lá já resolve instalação (Mason), configuração (conform/nvim-lint) e filetypes.
 
+**Inlay hints** (`<leader>ih`): rótulos discretos no código, como o nome do parâmetro em `fn("aa", 12)` → `a:` `b:`. Começam **desligados**, e o atalho alterna (vale para todos os buffers). Só alguns servidores os enviam, e todos exigem settings próprias em `lua/plugins/lsp/servers.lua`, então sem elas nada aparece:
+
+| Servidor | Hints configurados |
+|---|---|
+| `lua_ls` | nomes de parâmetro (`hint`) |
+| `ts_ls` | nomes de parâmetro só em literais, tipos de retorno e de parâmetros de função (sem tipos de variável); vale para TypeScript e JavaScript |
+| `gopls` | nomes de parâmetro e de campos de struct (`Nome:`, `Idade:`), valores de constantes (sem tipos de variável) |
+
+Os outros servidores da lista (`jsonls`, `bashls`, `vimls`, `cssls`, `yamlls`, `biome`) não enviam inlay hints. O `astro` anuncia suporte, mas não mostrou nenhum hint com as settings do TypeScript. As settings só entram quando o servidor inicia: depois de alterá-las, reabra o arquivo ou use `:LspRestart`. No Go, `fmt.Println` mostra `a...:` (o nome do parâmetro variádico); é o `parameterNames` do `gopls` e não dá para desligá-lo só nesse caso.
+
+O `lua_ls` ignora avisos de variáveis iniciadas por `_` (descartes intencionais) e os diagnósticos `trailing-space` e `incomplete-signature-doc`.
+
 **`<leader>ft`** abre um picker para trocar o filetype do buffer atual, igual ao seletor de linguagem do VSCode. Funciona em arquivos dentro de projetos e em buffers sem nome — em ambos os casos o LSP inicia automaticamente.
 
 ## Autocompletação
@@ -37,6 +49,8 @@ Formatters e linters ficam centralizados em `lua/plugins/lsp/tools.lua`. Adicion
 Usa **blink.cmp** como engine de completion. Sources base (LSP, snippets, path, buffer, calc) disponíveis em qualquer filetype. SQL e LaTeX têm sources dedicados que só aparecem nos filetypes corretos.
 
 Snippets carregados nativamente do `friendly-snippets`.
+
+Itens de cor no menu (por exemplo `azure` em CSS) usam a **própria cor** no ícone, e não a cor padrão do tipo. Isso depende de o servidor mandar o hex na documentação do item, como o `cssls` faz. Sem hex, o ícone continua com a cor do tipo.
 
 Para adicionar um source específico de linguagem, edite `lua/plugins/completions.lua`:
 
@@ -79,6 +93,10 @@ Do snacks.nvim (`lua/plugins/snacks.lua`):
 - **Realce de palavras (`words`)**: a referência do símbolo sob o cursor é realçada em todo o arquivo, e `]]` / `[[` pulam entre as ocorrências. Usa o LSP, então só funciona em arquivos com servidor conectado. O `]]`/`[[` sobrescreve os atalhos nativos de "seção", que quase não se usam.
 - **Guias de indentação (`indent`)**: linhas verticais finas mostrando a indentação e o bloco atual.
 - **Coluna de status (`statuscolumn`)**: reorganiza a faixa à esquerda do código em três partes: à esquerda do número ficam os diagnósticos do LSP e as marcas; no meio, o número da linha; à direita, o sinal do git (gitsigns). As setas de dobra só aparecem se o `foldcolumn` estiver diferente de `0`, e hoje está em `0`. Para desligar, troque `enabled = true` por `false` na linha correspondente.
+
+Do `nvim-highlight-colors` (`lua/plugins/highlight-colors.lua`):
+
+- **Cores no código**: valores como `#ff6b2b`, `rgba(...)`, `hsl(...)`, nomes de cor e classes do Tailwind ganham o fundo da própria cor. O plugin ignora o alfa: `rgba(255, 107, 43, 0.08)` aparece como laranja sólido. O `document_color` nativo do Neovim fica **desligado**, porque o plugin já consulta o LSP sozinho e os dois pintavam a mesma faixa.
 
 ## Atalhos
 
@@ -134,6 +152,7 @@ Buffers sem nome não têm caminho, então nada é copiado e aparece um aviso.
 | `<F2>` | Renomear símbolo |
 | `<leader>ca` | Code actions |
 | `<leader>cR` | Renomear ou mover o arquivo atual (pede o novo caminho, relativo ao cwd) |
+| `<leader>ih` | Ligar / desligar os inlay hints (começam desligados; configurados para Lua, TypeScript/JavaScript e Go) |
 | `<leader>gf` | Formatar |
 | `[d` / `]d` | Diagnóstico anterior / próximo |
 | `<leader>d` | Mostrar diagnóstico |

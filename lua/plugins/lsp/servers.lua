@@ -1,3 +1,15 @@
+-- Inlay hints do ts_ls (aparecem com `<leader>ih`). Só o lua_ls, o ts_ls, o
+-- gopls e o astro declaram suporte; os demais servidores não enviam hints
+local ts_hints = {
+  includeInlayParameterNameHints = "literals",
+  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+  includeInlayFunctionParameterTypeHints = true,
+  includeInlayVariableTypeHints = false,
+  includeInlayPropertyDeclarationTypeHints = true,
+  includeInlayFunctionLikeReturnTypeHints = true,
+  includeInlayEnumMemberValueHints = true,
+}
+
 return {
   jsonls = {
     settings = {
@@ -17,6 +29,8 @@ return {
           -- espaços no fim já são removidos pelo autocmd em autocmds.lua
           disable = { "trailing-space", "incomplete-signature-doc" },
         },
+        -- só aparece com os inlay hints ligados (`<leader>ih`)
+        hint = { enable = true, setType = false, paramType = true },
         -- runtime e libraries dos plugins são carregados sob demanda pelo
         -- lazydev.nvim (lua/plugins/lazydev.lua)
       },
@@ -28,8 +42,28 @@ return {
   vimls = {
     filetypes = { "vim" },
   },
-  ts_ls = {},
-  gopls = {},
+  ts_ls = {
+    settings = {
+      typescript = { inlayHints = ts_hints },
+      javascript = { inlayHints = ts_hints },
+    },
+  },
+  gopls = {
+    settings = {
+      gopls = {
+        hints = {
+          parameterNames = true, -- a:, b: nos argumentos
+          compositeLiteralFields = true, -- Nome:, Idade: em P{...}
+          constantValues = true,
+          functionTypeParameters = true,
+          -- tipos de variável (`x := ...` ganharia `int`) poluem demais
+          assignVariableTypes = false,
+          compositeLiteralTypes = false,
+          rangeVariableTypes = false,
+        },
+      },
+    },
+  },
   cssls = {},
   tailwindcss = {},
   yamlls = {
